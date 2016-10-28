@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Executing a Query - Python MySQL Documentation</title>
+  <meta name="author" content="Daniel Mikusa" />
+  <meta name="copyright" content="2006" />
+  <meta name="keywords" content="python mysql documentation introduction" />
+  <meta name="description" content="An introduction to MySQL in Python" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/css/mysql-docs.css" />
+  <link href="/css/syntaxhighlighter/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="/css/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<h1>Executing MySQL Queries in Python</h1>
+	<p>Executing queries is very simple in MySQL Python.  All you need to do is
+	take your cursor object and call the 'execute' function.  The execute function
+	requires one parameter, the query.  If the query contains any substitutions then
+	a second parameter, a tuple, containing the values to substitute must be given.</p>
+	
+	<h4>Example 1:  Create Table</h4>
+	
+	<pre class="brush: python">
+		cur.execute("CREATE TABLE song ( id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, title TEXT NOT NULL )")</pre>
+	
+	<p>In this example you can see how a basic query without any parameters is executed.</p>
+	
+	<h4>Example 2:  Execute Insert / Single Substitution Query</h4>
+	
+	<pre class="brush: python">
+		songs = ('Purple Haze', 'All Along the Watch Tower', 'Foxy Lady')
+		for song in songs:
+			cur.execute("INSERT INTO song (title) VALUES (%s)", song)
+			print "Auto Increment ID: %s" % cur.lastrowid</pre>
+	
+	<p>In this example, you can see how a query is executed with parameters and you can see how to get
+	the id generated from an auto increment column.</p>
+	
+	<h4>Example 3: Multiple Substitution Query</h4>
+	
+	<pre class="brush: python">
+		cur.execute("SELECT * FROM song WHERE id = %s or id = %s", (1,2))</pre>
+
+	<p>It is important to note that when there are multiple parameters to substitue, you must use a tuple
+	to enclose all of the parameters that need to be passed.  The parameters are then substituted from left
+	to right with tupe[0] being the left most substitution and tuple[n] being the right most substitution.</p>
+	
+	<h4>Example 4: Execute Select</h4>
+
+	<pre class="brush: python">
+		numrows = cur.execute("SELECT * FROM song")
+		print "Selected %s rows" % numrows		
+		print "Selected %s rows" % cur.rowcount</pre>
+	
+	<p>From this you can see that executing select queries is very easy.  There are two ways you can get
+	the number of rows the query returned.  The MySQLdb specific way is to save the return value from the
+	execute statement.  This is <b>NOT</b> the preferred way.  You should use the second method which is
+	the Python DB-API 2.0 way because it will make it easier if you ever have to change databases.  Both
+	method's are illustrated in this example.</p>
+
+	<div style="text-align: center;">
+	<table width="100%">
+		<tr>
+			<td><a href="cursor.html"><--</a></td>
+			<td><a href="index.html">Home</a></td>
+			<td><a href="row_results.html">--></a></td>
+		</tr>
+	</table>
+	</div>
+    <!-- Syntax Highlighter -->
+    <script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/js/syntaxhighlighter/shBrushPython.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <!-- end Syntax Highlighter -->
+    <!-- Google Analytics -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "UA-776027-1";
+        urchinTracker();
+    </script>
+    <!-- end Google Analytics -->
+</body>
+</html>

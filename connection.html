@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Connecting to MySQL - Python MySQL Documentation</title>
+  <meta name="author" content="Daniel Mikusa" />
+  <meta name="copyright" content="2006" />
+  <meta name="keywords" content="python mysql documentation introduction" />
+  <meta name="description" content="An introduction to MySQL in Python" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/css/mysql-docs.css" />
+  <link href="/css/syntaxhighlighter/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="/css/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<body>
+	<h1>Connecting to a MySQL database</h1>
+
+	<p>The next step to using MySQL in your Python scripts is to make a connection
+	to the database that you wish to use.  All Python DB-API 2.0 modules implement
+	a function 'module_name.connect'.  This is the function that is used to connect
+	to the database, in our case MySQL.</p>
+	
+	<pre class="brush: python">
+		db = MySQLdb.connect(host=MY_HOST, user=MY_USER, passwd=MY_PASS, db=MY_DB)</pre>
+	
+	<p>As you might guess this statement will connect me to the MySQL database located
+	on MY_HOST, using user MY_USER, connecting with password MY_PASS, to database MY_DB.
+	Note that the parameter for the password is 'passwd' not 'password'.</p>
+	
+	<p>As you execute this function the parameters are essentially passed to the underlying
+	Python extension _mysql.  This lets you pass many of the MySQL specific connection parameters
+	through the normal connection method.  For a complete listing of the supported connection
+	parameters check out the reference section.</p>
+
+	<div style="text-align: center;">
+	<table width="100%">
+		<tr>
+			<td><a href="introduction.html"><--</a></td>
+			<td><a href="index.html">Home</a></td>
+			<td><a href="cursor.html">--></a></td>
+		</tr>
+	</table>
+	</div>
+    <!-- Syntax Highlighter -->
+    <script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/js/syntaxhighlighter/shBrushPython.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <!-- end Syntax Highlighter -->
+    <!-- Google Analytics -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "UA-776027-1";
+        urchinTracker();
+    </script>
+    <!-- end Google Analytics -->
+</body>
+</html>

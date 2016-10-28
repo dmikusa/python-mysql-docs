@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module MySQLdb.connections</title></head><body bgcolor="#f0f0f8">
+
+<table summary="heading" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="MySQLdb.html"><font color="#ffffff">MySQLdb</font></a>.connections</strong></big></big></font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="">index</a><br><a href="MySQLdb/connections.py">MySQLdb/connections.py</a></font></td></tr></tbody></table>
+    <p><tt>This&nbsp;module&nbsp;implements&nbsp;connections&nbsp;for&nbsp;MySQLdb.&nbsp;Presently&nbsp;there&nbsp;is<br>
+only&nbsp;one&nbsp;class:&nbsp;<a href="#Connection">Connection</a>.&nbsp;Others&nbsp;are&nbsp;unlikely.&nbsp;However,&nbsp;you&nbsp;might<br>
+want&nbsp;to&nbsp;make&nbsp;your&nbsp;own&nbsp;subclasses.&nbsp;In&nbsp;most&nbsp;cases,&nbsp;you&nbsp;will&nbsp;probably<br>
+override&nbsp;<a href="#Connection">Connection</a>.default_cursor&nbsp;with&nbsp;a&nbsp;non-standard&nbsp;Cursor&nbsp;class.</tt></p>
+<p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#fffff0" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table summary="list" width="100%"><tbody><tr><td valign="top" width="25%"><a href="_mysql.html">_mysql</a><br>
+</td><td valign="top" width="25%"><a href="MySQLdb.cursors.html">MySQLdb.cursors</a><br>
+</td><td valign="top" width="25%"><a href="types.html">types</a><br>
+</td><td valign="top" width="25%"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="_mysql.html#connection">_mysql.connection</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="MySQLdb.connections.html#Connection">Connection</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Connection">class <strong>Connection</strong></a>(<a href="_mysql.html#connection">_mysql.connection</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>MySQL&nbsp;Database&nbsp;<a href="#Connection">Connection</a>&nbsp;Object<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="MySQLdb.connections.html#Connection">Connection</a></dd>
+<dd><a href="_mysql.html#connection">_mysql.connection</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Connection-__init__"><strong>__init__</strong></a>(self, *args, **kwargs)</dt><dd><tt>Create&nbsp;a&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;to&nbsp;the&nbsp;database.&nbsp;It&nbsp;is&nbsp;strongly&nbsp;recommended<br>
+that&nbsp;you&nbsp;only&nbsp;use&nbsp;keyword&nbsp;parameters.&nbsp;Consult&nbsp;the&nbsp;MySQL&nbsp;C&nbsp;API<br>
+documentation&nbsp;for&nbsp;more&nbsp;information.<br>
+&nbsp;<br>
+host<br>
+&nbsp;&nbsp;string,&nbsp;host&nbsp;to&nbsp;connect<br>
+&nbsp;&nbsp;<br>
+user<br>
+&nbsp;&nbsp;string,&nbsp;user&nbsp;to&nbsp;connect&nbsp;as<br>
+&nbsp;<br>
+passwd<br>
+&nbsp;&nbsp;string,&nbsp;password&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+db<br>
+&nbsp;&nbsp;string,&nbsp;database&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+port<br>
+&nbsp;&nbsp;integer,&nbsp;TCP/IP&nbsp;port&nbsp;to&nbsp;connect&nbsp;to<br>
+&nbsp;<br>
+unix_socket<br>
+&nbsp;&nbsp;string,&nbsp;location&nbsp;of&nbsp;unix_socket&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+conv<br>
+&nbsp;&nbsp;conversion&nbsp;dictionary,&nbsp;see&nbsp;MySQLdb.converters<br>
+&nbsp;<br>
+connect_time<br>
+&nbsp;&nbsp;number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;before&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;attempt<br>
+&nbsp;&nbsp;fails.<br>
+&nbsp;<br>
+compress<br>
+&nbsp;&nbsp;if&nbsp;set,&nbsp;compression&nbsp;is&nbsp;enabled<br>
+&nbsp;<br>
+named_pipe<br>
+&nbsp;&nbsp;if&nbsp;set,&nbsp;a&nbsp;named&nbsp;pipe&nbsp;is&nbsp;used&nbsp;to&nbsp;connect&nbsp;(Windows&nbsp;only)<br>
+&nbsp;<br>
+init_command<br>
+&nbsp;&nbsp;command&nbsp;which&nbsp;is&nbsp;run&nbsp;once&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;is&nbsp;created<br>
+&nbsp;<br>
+read_default_file<br>
+&nbsp;&nbsp;file&nbsp;from&nbsp;which&nbsp;default&nbsp;client&nbsp;values&nbsp;are&nbsp;read<br>
+&nbsp;<br>
+read_default_group<br>
+&nbsp;&nbsp;configuration&nbsp;group&nbsp;to&nbsp;use&nbsp;from&nbsp;the&nbsp;default&nbsp;file<br>
+&nbsp;<br>
+cursorclass<br>
+&nbsp;&nbsp;class&nbsp;object,&nbsp;used&nbsp;to&nbsp;create&nbsp;cursors&nbsp;(keyword&nbsp;only)<br>
+&nbsp;<br>
+use_unicode<br>
+&nbsp;&nbsp;If&nbsp;True,&nbsp;text-like&nbsp;columns&nbsp;are&nbsp;returned&nbsp;as&nbsp;unicode&nbsp;objects<br>
+&nbsp;&nbsp;using&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>'s&nbsp;character&nbsp;set.&nbsp;&nbsp;Otherwise,&nbsp;text-like<br>
+&nbsp;&nbsp;columns&nbsp;are&nbsp;returned&nbsp;as&nbsp;strings.&nbsp;&nbsp;columns&nbsp;are&nbsp;returned&nbsp;as<br>
+&nbsp;&nbsp;normal&nbsp;strings.&nbsp;Unicode&nbsp;objects&nbsp;will&nbsp;always&nbsp;be&nbsp;encoded&nbsp;to<br>
+&nbsp;&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>'s&nbsp;character&nbsp;set&nbsp;regardless&nbsp;of&nbsp;this&nbsp;setting.<br>
+&nbsp;<br>
+charset<br>
+&nbsp;&nbsp;If&nbsp;supplied,&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;character&nbsp;set&nbsp;will&nbsp;be&nbsp;changed<br>
+&nbsp;&nbsp;to&nbsp;this&nbsp;character&nbsp;set&nbsp;(MySQL-4.1&nbsp;and&nbsp;newer).&nbsp;This&nbsp;implies<br>
+&nbsp;&nbsp;use_unicode=True.<br>
+&nbsp;<br>
+sql_mode<br>
+&nbsp;&nbsp;If&nbsp;supplied,&nbsp;the&nbsp;session&nbsp;SQL&nbsp;mode&nbsp;will&nbsp;be&nbsp;changed&nbsp;to&nbsp;this<br>
+&nbsp;&nbsp;setting&nbsp;(MySQL-4.1&nbsp;and&nbsp;newer).&nbsp;For&nbsp;more&nbsp;details&nbsp;and&nbsp;legal<br>
+&nbsp;&nbsp;values,&nbsp;see&nbsp;the&nbsp;MySQL&nbsp;documentation.<br>
+&nbsp;&nbsp;<br>
+client_flag<br>
+&nbsp;&nbsp;integer,&nbsp;flags&nbsp;to&nbsp;use&nbsp;or&nbsp;0<br>
+&nbsp;&nbsp;(see&nbsp;MySQL&nbsp;docs&nbsp;or&nbsp;constants/CLIENTS.py)<br>
+&nbsp;<br>
+ssl<br>
+&nbsp;&nbsp;dictionary&nbsp;or&nbsp;mapping,&nbsp;contains&nbsp;SSL&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;parameters;<br>
+&nbsp;&nbsp;see&nbsp;the&nbsp;MySQL&nbsp;documentation&nbsp;for&nbsp;more&nbsp;details<br>
+&nbsp;&nbsp;(mysql_ssl_set()).&nbsp;&nbsp;If&nbsp;this&nbsp;is&nbsp;set,&nbsp;and&nbsp;the&nbsp;client&nbsp;does&nbsp;not<br>
+&nbsp;&nbsp;support&nbsp;SSL,&nbsp;NotSupportedError&nbsp;will&nbsp;be&nbsp;raised.<br>
+&nbsp;<br>
+local_infile<br>
+&nbsp;&nbsp;integer,&nbsp;non-zero&nbsp;enables&nbsp;LOAD&nbsp;LOCAL&nbsp;INFILE;&nbsp;zero&nbsp;disables<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;a&nbsp;number&nbsp;of&nbsp;undocumented,&nbsp;non-standard&nbsp;methods.&nbsp;See&nbsp;the<br>
+documentation&nbsp;for&nbsp;the&nbsp;MySQL&nbsp;C&nbsp;API&nbsp;for&nbsp;some&nbsp;hints&nbsp;on&nbsp;what&nbsp;they&nbsp;do.</tt></dd></dl>
+
+<dl><dt><a name="Connection-begin"><strong>begin</strong></a>(self)</dt><dd><tt>Explicitly&nbsp;begin&nbsp;a&nbsp;<a href="_mysql.html#connection">connection</a>.&nbsp;Non-standard.<br>
+DEPRECATED:&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.<br>
+Use&nbsp;an&nbsp;SQL&nbsp;BEGIN&nbsp;statement&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="Connection-cursor"><strong>cursor</strong></a>(self, cursorclass<font color="#909090">=None</font>)</dt><dd><tt>Create&nbsp;a&nbsp;cursor&nbsp;on&nbsp;which&nbsp;queries&nbsp;may&nbsp;be&nbsp;performed.&nbsp;The<br>
+optional&nbsp;cursorclass&nbsp;parameter&nbsp;is&nbsp;used&nbsp;to&nbsp;create&nbsp;the<br>
+Cursor.&nbsp;By&nbsp;default,&nbsp;self.<strong>cursorclass</strong>=cursors.Cursor&nbsp;is<br>
+used.</tt></dd></dl>
+
+<dl><dt><a name="Connection-errorhandler"><strong>errorhandler</strong></a> = defaulterrorhandler(connection, cursor, errorclass, errorvalue)</dt><dd><tt>If&nbsp;cursor&nbsp;is&nbsp;not&nbsp;None,&nbsp;(errorclass,&nbsp;errorvalue)&nbsp;is&nbsp;appended&nbsp;to<br>
+cursor.messages;&nbsp;otherwise&nbsp;it&nbsp;is&nbsp;appended&nbsp;to<br>
+<a href="_mysql.html#connection">connection</a>.messages.&nbsp;Then&nbsp;errorclass&nbsp;is&nbsp;raised&nbsp;with&nbsp;errorvalue&nbsp;as<br>
+the&nbsp;value.<br>
+&nbsp;<br>
+You&nbsp;can&nbsp;override&nbsp;this&nbsp;with&nbsp;your&nbsp;own&nbsp;error&nbsp;handler&nbsp;by&nbsp;assigning&nbsp;it<br>
+to&nbsp;the&nbsp;instance.</tt></dd></dl>
+
+<dl><dt><a name="Connection-literal"><strong>literal</strong></a>(self, o)</dt><dd><tt>If&nbsp;o&nbsp;is&nbsp;a&nbsp;single&nbsp;object,&nbsp;returns&nbsp;an&nbsp;SQL&nbsp;literal&nbsp;as&nbsp;a&nbsp;string.<br>
+If&nbsp;o&nbsp;is&nbsp;a&nbsp;non-string&nbsp;sequence,&nbsp;the&nbsp;items&nbsp;of&nbsp;the&nbsp;sequence&nbsp;are<br>
+converted&nbsp;and&nbsp;returned&nbsp;as&nbsp;a&nbsp;sequence.<br>
+&nbsp;<br>
+Non-standard.&nbsp;For&nbsp;internal&nbsp;use;&nbsp;do&nbsp;not&nbsp;use&nbsp;this&nbsp;in&nbsp;your<br>
+applications.</tt></dd></dl>
+
+<dl><dt><a name="Connection-set_character_set"><strong>set_character_set</strong></a>(self, charset)</dt><dd><tt>Set&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;character&nbsp;set&nbsp;to&nbsp;charset.&nbsp;The&nbsp;character<br>
+set&nbsp;can&nbsp;only&nbsp;be&nbsp;changed&nbsp;in&nbsp;MySQL-4.1&nbsp;and&nbsp;newer.&nbsp;If&nbsp;you&nbsp;try<br>
+to&nbsp;change&nbsp;the&nbsp;character&nbsp;set&nbsp;from&nbsp;the&nbsp;current&nbsp;value&nbsp;in&nbsp;an<br>
+older&nbsp;version,&nbsp;NotSupportedError&nbsp;will&nbsp;be&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="Connection-set_sql_mode"><strong>set_sql_mode</strong></a>(self, sql_mode)</dt><dd><tt>Set&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;sql_mode.&nbsp;See&nbsp;MySQL&nbsp;documentation&nbsp;for<br>
+legal&nbsp;values.</tt></dd></dl>
+
+<dl><dt><a name="Connection-show_warnings"><strong>show_warnings</strong></a>(self)</dt><dd><tt>Return&nbsp;detailed&nbsp;information&nbsp;about&nbsp;warnings&nbsp;as&nbsp;a<br>
+sequence&nbsp;of&nbsp;tuples&nbsp;of&nbsp;(Level,&nbsp;Code,&nbsp;Message).&nbsp;This<br>
+is&nbsp;only&nbsp;supported&nbsp;in&nbsp;MySQL-4.1&nbsp;and&nbsp;up.&nbsp;If&nbsp;your&nbsp;server<br>
+is&nbsp;an&nbsp;earlier&nbsp;version,&nbsp;an&nbsp;empty&nbsp;sequence&nbsp;is&nbsp;returned.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>DataError</strong> = &lt;class _mysql_exceptions.DataError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>DatabaseError</strong> = &lt;class _mysql_exceptions.DatabaseError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.</tt></dd></dl>
+
+<dl><dt><strong>Error</strong> = &lt;class _mysql_exceptions.Error&gt;</dt><dd><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;Warning).</tt></dd></dl>
+
+<dl><dt><strong>IntegrityError</strong> = &lt;class _mysql_exceptions.IntegrityError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>InterfaceError</strong> = &lt;class _mysql_exceptions.InterfaceError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><strong>InternalError</strong> = &lt;class _mysql_exceptions.InternalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>NotSupportedError</strong> = &lt;class _mysql_exceptions.NotSupportedError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.<a href="#Connection-rollback">rollback</a>()&nbsp;on&nbsp;a&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.</tt></dd></dl>
+
+<dl><dt><strong>OperationalError</strong> = &lt;class _mysql_exceptions.OperationalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>ProgrammingError</strong> = &lt;class _mysql_exceptions.ProgrammingError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>Warning</strong> = &lt;class _mysql_exceptions.Warning&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'Connection' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>default_cursor</strong> = &lt;class 'MySQLdb.cursors.Cursor'&gt;</dt><dd><tt>This&nbsp;is&nbsp;the&nbsp;standard&nbsp;Cursor&nbsp;class&nbsp;that&nbsp;returns&nbsp;rows&nbsp;as&nbsp;tuples<br>
+and&nbsp;stores&nbsp;the&nbsp;result&nbsp;set&nbsp;in&nbsp;the&nbsp;client.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="_mysql.html#connection">_mysql.connection</a>:<br>
+<dl><dt><a name="Connection-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#Connection-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="Connection-affected_rows"><strong>affected_rows</strong></a>(...)</dt><dd><tt>Return&nbsp;number&nbsp;of&nbsp;rows&nbsp;affected&nbsp;by&nbsp;the&nbsp;last&nbsp;query.<br>
+Non-standard.&nbsp;Use&nbsp;Cursor.rowcount.</tt></dd></dl>
+
+<dl><dt><a name="Connection-autocommit"><strong>autocommit</strong></a>(...)</dt><dd><tt>Set&nbsp;the&nbsp;autocommit&nbsp;mode.&nbsp;True&nbsp;values&nbsp;enable;&nbsp;False&nbsp;value&nbsp;disable.</tt></dd></dl>
+
+<dl><dt><a name="Connection-change_user"><strong>change_user</strong></a>(...)</dt><dd><tt>Changes&nbsp;the&nbsp;user&nbsp;and&nbsp;causes&nbsp;the&nbsp;database&nbsp;specified&nbsp;by&nbsp;db&nbsp;to<br>
+become&nbsp;the&nbsp;default&nbsp;(current)&nbsp;database&nbsp;on&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a><br>
+specified&nbsp;by&nbsp;mysql.&nbsp;In&nbsp;subsequent&nbsp;queries,&nbsp;this&nbsp;database&nbsp;is<br>
+the&nbsp;default&nbsp;for&nbsp;table&nbsp;references&nbsp;that&nbsp;do&nbsp;not&nbsp;include&nbsp;an<br>
+explicit&nbsp;database&nbsp;specifier.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;was&nbsp;introduced&nbsp;in&nbsp;MySQL&nbsp;Version&nbsp;3.23.3.<br>
+&nbsp;<br>
+Fails&nbsp;unless&nbsp;the&nbsp;connected&nbsp;user&nbsp;can&nbsp;be&nbsp;authenticated&nbsp;or&nbsp;if&nbsp;he<br>
+doesn't&nbsp;have&nbsp;permission&nbsp;to&nbsp;use&nbsp;the&nbsp;database.&nbsp;In&nbsp;this&nbsp;case&nbsp;the<br>
+user&nbsp;and&nbsp;database&nbsp;are&nbsp;not&nbsp;changed.<br>
+&nbsp;<br>
+The&nbsp;db&nbsp;parameter&nbsp;may&nbsp;be&nbsp;set&nbsp;to&nbsp;None&nbsp;if&nbsp;you&nbsp;don't&nbsp;want&nbsp;to&nbsp;have<br>
+a&nbsp;default&nbsp;database.</tt></dd></dl>
+
+<dl><dt><a name="Connection-character_set_name"><strong>character_set_name</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;default&nbsp;character&nbsp;set&nbsp;for&nbsp;the&nbsp;current&nbsp;<a href="_mysql.html#connection">connection</a>.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-close"><strong>close</strong></a>(...)</dt><dd><tt>Close&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>.&nbsp;No&nbsp;further&nbsp;activity&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="Connection-commit"><strong>commit</strong></a>(...)</dt><dd><tt>Commits&nbsp;the&nbsp;current&nbsp;transaction</tt></dd></dl>
+
+<dl><dt><a name="Connection-dump_debug_info"><strong>dump_debug_info</strong></a>(...)</dt><dd><tt>Instructs&nbsp;the&nbsp;server&nbsp;to&nbsp;write&nbsp;some&nbsp;debug&nbsp;information&nbsp;to&nbsp;the<br>
+log.&nbsp;The&nbsp;connected&nbsp;user&nbsp;must&nbsp;have&nbsp;the&nbsp;process&nbsp;privilege&nbsp;for<br>
+this&nbsp;to&nbsp;work.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-errno"><strong>errno</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;error&nbsp;code&nbsp;for&nbsp;the&nbsp;most&nbsp;recently&nbsp;invoked&nbsp;API&nbsp;function<br>
+that&nbsp;can&nbsp;succeed&nbsp;or&nbsp;fail.&nbsp;A&nbsp;return&nbsp;value&nbsp;of&nbsp;zero&nbsp;means&nbsp;that&nbsp;no&nbsp;error<br>
+occurred.</tt></dd></dl>
+
+<dl><dt><a name="Connection-error"><strong>error</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;error&nbsp;message&nbsp;for&nbsp;the&nbsp;most&nbsp;recently&nbsp;invoked&nbsp;API&nbsp;function<br>
+that&nbsp;can&nbsp;succeed&nbsp;or&nbsp;fail.&nbsp;An&nbsp;empty&nbsp;string&nbsp;()&nbsp;is&nbsp;returned&nbsp;if&nbsp;no&nbsp;error<br>
+occurred.</tt></dd></dl>
+
+<dl><dt><a name="Connection-escape"><strong>escape</strong></a>(...)</dt><dd><tt><a href="#Connection-escape">escape</a>(obj,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in&nbsp;object&nbsp;obj<br>
+using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;SQL&nbsp;literal&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="Connection-escape_string"><strong>escape_string</strong></a>(...)</dt><dd><tt><a href="#Connection-escape_string">escape_string</a>(s)&nbsp;--&nbsp;quote&nbsp;any&nbsp;SQL-interpreted&nbsp;characters&nbsp;in&nbsp;string&nbsp;s.<br>
+&nbsp;<br>
+Use&nbsp;<a href="_mysql.html#connection">connection</a>.<a href="#Connection-escape_string">escape_string</a>(s),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#Connection-escape_string">escape_string</a>(s)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.&nbsp;You&nbsp;are<br>
+probably&nbsp;better&nbsp;off&nbsp;using&nbsp;<a href="_mysql.html#connection">connection</a>.<a href="#Connection-escape">escape</a>(o)&nbsp;instead,&nbsp;since<br>
+it&nbsp;will&nbsp;escape&nbsp;entire&nbsp;sequences&nbsp;as&nbsp;well&nbsp;as&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="Connection-field_count"><strong>field_count</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;columns&nbsp;for&nbsp;the&nbsp;most&nbsp;recent&nbsp;query&nbsp;on&nbsp;the<br>
+<a href="_mysql.html#connection">connection</a>.&nbsp;Non-standard.&nbsp;Will&nbsp;probably&nbsp;give&nbsp;you&nbsp;bogus&nbsp;results<br>
+on&nbsp;most&nbsp;cursor&nbsp;classes.&nbsp;Use&nbsp;Cursor.rowcount.</tt></dd></dl>
+
+<dl><dt><a name="Connection-get_character_set_info"><strong>get_character_set_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;dict&nbsp;with&nbsp;information&nbsp;about&nbsp;the&nbsp;current&nbsp;character&nbsp;set:<br>
+&nbsp;<br>
+collation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;collation&nbsp;name<br>
+name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;character&nbsp;set&nbsp;name<br>
+comment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;or&nbsp;descriptive&nbsp;name<br>
+dir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;character&nbsp;set&nbsp;directory<br>
+mbminlen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;min.&nbsp;length&nbsp;for&nbsp;multibyte&nbsp;string<br>
+mbmaxlen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;max.&nbsp;length&nbsp;for&nbsp;multibyte&nbsp;string<br>
+&nbsp;<br>
+Not&nbsp;all&nbsp;keys&nbsp;may&nbsp;be&nbsp;present,&nbsp;particularly&nbsp;dir.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-get_host_info"><strong>get_host_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;that&nbsp;represents&nbsp;the&nbsp;MySQL&nbsp;client&nbsp;library<br>
+version.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-get_proto_info"><strong>get_proto_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;an&nbsp;unsigned&nbsp;integer&nbsp;representing&nbsp;the&nbsp;protocol&nbsp;version<br>
+used&nbsp;by&nbsp;the&nbsp;current&nbsp;<a href="_mysql.html#connection">connection</a>.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-get_server_info"><strong>get_server_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;that&nbsp;represents&nbsp;the&nbsp;server&nbsp;version&nbsp;number.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-info"><strong>info</strong></a>(...)</dt><dd><tt>Retrieves&nbsp;a&nbsp;string&nbsp;providing&nbsp;information&nbsp;about&nbsp;the&nbsp;most<br>
+recently&nbsp;executed&nbsp;query.&nbsp;Non-standard.&nbsp;Use&nbsp;messages&nbsp;or<br>
+Cursor.messages.</tt></dd></dl>
+
+<dl><dt><a name="Connection-insert_id"><strong>insert_id</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;ID&nbsp;generated&nbsp;for&nbsp;an&nbsp;AUTO_INCREMENT&nbsp;column&nbsp;by&nbsp;the&nbsp;previous<br>
+query.&nbsp;Use&nbsp;this&nbsp;function&nbsp;after&nbsp;you&nbsp;have&nbsp;performed&nbsp;an&nbsp;INSERT&nbsp;query&nbsp;into&nbsp;a<br>
+table&nbsp;that&nbsp;contains&nbsp;an&nbsp;AUTO_INCREMENT&nbsp;field.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;this&nbsp;returns&nbsp;0&nbsp;if&nbsp;the&nbsp;previous&nbsp;query&nbsp;does&nbsp;not<br>
+generate&nbsp;an&nbsp;AUTO_INCREMENT&nbsp;value.&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;save&nbsp;the&nbsp;value&nbsp;for<br>
+later,&nbsp;be&nbsp;sure&nbsp;to&nbsp;call&nbsp;this&nbsp;immediately&nbsp;after&nbsp;the&nbsp;query<br>
+that&nbsp;generates&nbsp;the&nbsp;value.<br>
+&nbsp;<br>
+The&nbsp;ID&nbsp;is&nbsp;updated&nbsp;after&nbsp;INSERT&nbsp;and&nbsp;UPDATE&nbsp;statements&nbsp;that&nbsp;generate<br>
+an&nbsp;AUTO_INCREMENT&nbsp;value&nbsp;or&nbsp;that&nbsp;set&nbsp;a&nbsp;column&nbsp;value&nbsp;to<br>
+LAST_INSERT_ID(expr).&nbsp;See&nbsp;section&nbsp;6.3.5.2&nbsp;Miscellaneous&nbsp;Functions<br>
+in&nbsp;the&nbsp;MySQL&nbsp;documentation.<br>
+&nbsp;<br>
+Also&nbsp;note&nbsp;that&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;SQL&nbsp;LAST_INSERT_ID()&nbsp;function&nbsp;always<br>
+contains&nbsp;the&nbsp;most&nbsp;recently&nbsp;generated&nbsp;AUTO_INCREMENT&nbsp;value,&nbsp;and&nbsp;is&nbsp;not<br>
+reset&nbsp;between&nbsp;queries&nbsp;because&nbsp;the&nbsp;value&nbsp;of&nbsp;that&nbsp;function&nbsp;is&nbsp;maintained<br>
+in&nbsp;the&nbsp;server.</tt></dd></dl>
+
+<dl><dt><a name="Connection-kill"><strong>kill</strong></a>(...)</dt><dd><tt>Asks&nbsp;the&nbsp;server&nbsp;to&nbsp;kill&nbsp;the&nbsp;thread&nbsp;specified&nbsp;by&nbsp;pid.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-next_result"><strong>next_result</strong></a>(...)</dt><dd><tt>If&nbsp;more&nbsp;query&nbsp;results&nbsp;exist,&nbsp;<a href="#Connection-next_result">next_result</a>()&nbsp;reads&nbsp;the&nbsp;next&nbsp;query<br>
+results&nbsp;and&nbsp;returns&nbsp;the&nbsp;status&nbsp;back&nbsp;to&nbsp;application.<br>
+&nbsp;<br>
+After&nbsp;calling&nbsp;<a href="#Connection-next_result">next_result</a>()&nbsp;the&nbsp;state&nbsp;of&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;is&nbsp;as&nbsp;if<br>
+you&nbsp;had&nbsp;called&nbsp;<a href="#Connection-query">query</a>()&nbsp;for&nbsp;the&nbsp;next&nbsp;query.&nbsp;This&nbsp;means&nbsp;that&nbsp;you&nbsp;can<br>
+now&nbsp;call&nbsp;<a href="#Connection-store_result">store_result</a>(),&nbsp;<a href="#Connection-warning_count">warning_count</a>(),&nbsp;<a href="#Connection-affected_rows">affected_rows</a>()<br>
+,&nbsp;and&nbsp;so&nbsp;forth.&nbsp;<br>
+&nbsp;<br>
+Returns&nbsp;0&nbsp;if&nbsp;there&nbsp;are&nbsp;more&nbsp;results;&nbsp;-1&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;results<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-ping"><strong>ping</strong></a>(...)</dt><dd><tt>Checks&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;to&nbsp;the&nbsp;server&nbsp;is<br>
+working.&nbsp;If&nbsp;it&nbsp;has&nbsp;gone&nbsp;down,&nbsp;an&nbsp;automatic&nbsp;reconnection&nbsp;is<br>
+attempted.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;can&nbsp;be&nbsp;used&nbsp;by&nbsp;clients&nbsp;that&nbsp;remain&nbsp;idle&nbsp;for&nbsp;a<br>
+long&nbsp;while,&nbsp;to&nbsp;check&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;server&nbsp;has&nbsp;closed&nbsp;the<br>
+<a href="_mysql.html#connection">connection</a>&nbsp;and&nbsp;reconnect&nbsp;if&nbsp;necessary.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-query"><strong>query</strong></a>(...)</dt><dd><tt>Execute&nbsp;a&nbsp;query.&nbsp;<a href="#Connection-store_result">store_result</a>()&nbsp;or&nbsp;<a href="#Connection-use_result">use_result</a>()&nbsp;will&nbsp;get&nbsp;the<br>
+result&nbsp;set,&nbsp;if&nbsp;any.&nbsp;Non-standard.&nbsp;Use&nbsp;<a href="#Connection-cursor">cursor</a>()&nbsp;to&nbsp;create&nbsp;a&nbsp;cursor,<br>
+then&nbsp;cursor.execute().</tt></dd></dl>
+
+<dl><dt><a name="Connection-rollback"><strong>rollback</strong></a>(...)</dt><dd><tt>Rolls&nbsp;backs&nbsp;the&nbsp;current&nbsp;transaction</tt></dd></dl>
+
+<dl><dt><a name="Connection-select_db"><strong>select_db</strong></a>(...)</dt><dd><tt>Causes&nbsp;the&nbsp;database&nbsp;specified&nbsp;by&nbsp;db&nbsp;to&nbsp;become&nbsp;the&nbsp;default<br>
+(current)&nbsp;database&nbsp;on&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;specified&nbsp;by&nbsp;mysql.&nbsp;In&nbsp;subsequent<br>
+queries,&nbsp;this&nbsp;database&nbsp;is&nbsp;the&nbsp;default&nbsp;for&nbsp;table&nbsp;references&nbsp;that&nbsp;do&nbsp;not<br>
+include&nbsp;an&nbsp;explicit&nbsp;database&nbsp;specifier.<br>
+&nbsp;<br>
+Fails&nbsp;unless&nbsp;the&nbsp;connected&nbsp;user&nbsp;can&nbsp;be&nbsp;authenticated&nbsp;as&nbsp;having<br>
+permission&nbsp;to&nbsp;use&nbsp;the&nbsp;database.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-set_server_option"><strong>set_server_option</strong></a>(...)</dt><dd><tt><a href="#Connection-set_server_option">set_server_option</a>(option)&nbsp;--&nbsp;Enables&nbsp;or&nbsp;disables&nbsp;an&nbsp;option<br>
+for&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-shutdown"><strong>shutdown</strong></a>(...)</dt><dd><tt>Asks&nbsp;the&nbsp;database&nbsp;server&nbsp;to&nbsp;shut&nbsp;down.&nbsp;The&nbsp;connected&nbsp;user&nbsp;must<br>
+have&nbsp;shutdown&nbsp;privileges.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-sqlstate"><strong>sqlstate</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;containing&nbsp;the&nbsp;SQLSTATE&nbsp;error&nbsp;code<br>
+for&nbsp;the&nbsp;last&nbsp;error.&nbsp;The&nbsp;error&nbsp;code&nbsp;consists&nbsp;of&nbsp;five&nbsp;characters.<br>
+'00000'&nbsp;means&nbsp;"no&nbsp;error."&nbsp;The&nbsp;values&nbsp;are&nbsp;specified&nbsp;by&nbsp;ANSI&nbsp;SQL<br>
+and&nbsp;ODBC.&nbsp;For&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;values,&nbsp;see&nbsp;section&nbsp;23<br>
+Error&nbsp;Handling&nbsp;in&nbsp;MySQL&nbsp;in&nbsp;the&nbsp;MySQL&nbsp;Manual.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;not&nbsp;all&nbsp;MySQL&nbsp;errors&nbsp;are&nbsp;yet&nbsp;mapped&nbsp;to&nbsp;SQLSTATE's.<br>
+The&nbsp;value&nbsp;'HY000'&nbsp;(general&nbsp;error)&nbsp;is&nbsp;used&nbsp;for&nbsp;unmapped&nbsp;errors.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-stat"><strong>stat</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;character&nbsp;string&nbsp;containing&nbsp;information&nbsp;similar&nbsp;to<br>
+that&nbsp;provided&nbsp;by&nbsp;the&nbsp;mysqladmin&nbsp;status&nbsp;command.&nbsp;This&nbsp;includes<br>
+uptime&nbsp;in&nbsp;seconds&nbsp;and&nbsp;the&nbsp;number&nbsp;of&nbsp;running&nbsp;threads,<br>
+questions,&nbsp;reloads,&nbsp;and&nbsp;open&nbsp;tables.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-store_result"><strong>store_result</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;result&nbsp;object&nbsp;acquired&nbsp;by&nbsp;mysql_store_result<br>
+(results&nbsp;stored&nbsp;in&nbsp;the&nbsp;client).&nbsp;If&nbsp;no&nbsp;results&nbsp;are&nbsp;available,<br>
+None&nbsp;is&nbsp;returned.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-string_literal"><strong>string_literal</strong></a>(...)</dt><dd><tt><a href="#Connection-string_literal">string_literal</a>(obj)&nbsp;--&nbsp;converts&nbsp;object&nbsp;obj&nbsp;into&nbsp;a&nbsp;SQL&nbsp;string&nbsp;literal.<br>
+This&nbsp;means,&nbsp;any&nbsp;special&nbsp;SQL&nbsp;characters&nbsp;are&nbsp;escaped,&nbsp;and&nbsp;it&nbsp;is&nbsp;enclosed<br>
+within&nbsp;single&nbsp;quotes.&nbsp;In&nbsp;other&nbsp;words,&nbsp;it&nbsp;performs:<br>
+&nbsp;<br>
+"'%s'"&nbsp;%&nbsp;<a href="#Connection-escape_string">escape_string</a>(str(obj))<br>
+&nbsp;<br>
+Use&nbsp;<a href="_mysql.html#connection">connection</a>.<a href="#Connection-string_literal">string_literal</a>(obj),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#Connection-string_literal">string_literal</a>(obj)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="Connection-thread_id"><strong>thread_id</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;thread&nbsp;ID&nbsp;of&nbsp;the&nbsp;current&nbsp;<a href="_mysql.html#connection">connection</a>.&nbsp;This&nbsp;value<br>
+can&nbsp;be&nbsp;used&nbsp;as&nbsp;an&nbsp;argument&nbsp;to&nbsp;<a href="#Connection-kill">kill</a>()&nbsp;to&nbsp;kill&nbsp;the&nbsp;thread.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;is&nbsp;lost&nbsp;and&nbsp;you&nbsp;reconnect&nbsp;with&nbsp;<a href="#Connection-ping">ping</a>(),&nbsp;the<br>
+thread&nbsp;ID&nbsp;will&nbsp;change.&nbsp;This&nbsp;means&nbsp;you&nbsp;should&nbsp;not&nbsp;get&nbsp;the<br>
+thread&nbsp;ID&nbsp;and&nbsp;store&nbsp;it&nbsp;for&nbsp;later.&nbsp;You&nbsp;should&nbsp;get&nbsp;it&nbsp;when&nbsp;you<br>
+need&nbsp;it.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-use_result"><strong>use_result</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;result&nbsp;object&nbsp;acquired&nbsp;by&nbsp;mysql_use_result<br>
+(results&nbsp;stored&nbsp;in&nbsp;the&nbsp;server).&nbsp;If&nbsp;no&nbsp;results&nbsp;are&nbsp;available,<br>
+None&nbsp;is&nbsp;returned.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="Connection-warning_count"><strong>warning_count</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;warnings&nbsp;generated&nbsp;during&nbsp;execution<br>
+of&nbsp;the&nbsp;previous&nbsp;SQL&nbsp;statement.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="_mysql.html#connection">_mysql.connection</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;</dt><dd><tt>T.<a href="#Connection-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;object&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dd></dl>
+
+<dl><dt><strong>client_flag</strong> = &lt;member 'client_flag' of '_mysql.connection' objects&gt;</dt><dd><tt>Client&nbsp;flags;&nbsp;refer&nbsp;to&nbsp;MySQLdb.constants.CLIENT</tt></dd></dl>
+
+<dl><dt><strong>converter</strong> = &lt;member 'converter' of '_mysql.connection' objects&gt;</dt><dd><tt>Type&nbsp;conversion&nbsp;mapping</tt></dd></dl>
+
+<dl><dt><strong>open</strong> = &lt;member 'open' of '_mysql.connection' objects&gt;</dt><dd><tt>True&nbsp;if&nbsp;<a href="_mysql.html#connection">connection</a>&nbsp;is&nbsp;open</tt></dd></dl>
+
+<dl><dt><strong>port</strong> = &lt;member 'port' of '_mysql.connection' objects&gt;</dt><dd><tt>TCP/IP&nbsp;port&nbsp;of&nbsp;the&nbsp;server&nbsp;<a href="_mysql.html#connection">connection</a></tt></dd></dl>
+
+<dl><dt><strong>server_capabilities</strong> = &lt;member 'server_capabilities' of '_mysql.connection' objects&gt;</dt><dd><tt>Capabilites&nbsp;of&nbsp;server;&nbsp;consult&nbsp;MySQLdb.constants.CLIENT</tt></dd></dl>
+
+</td></tr></tbody></table></p></td></tr></tbody></table></p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-defaulterrorhandler"><strong>defaulterrorhandler</strong></a>(connection, cursor, errorclass, errorvalue)</dt><dd><tt>If&nbsp;cursor&nbsp;is&nbsp;not&nbsp;None,&nbsp;(errorclass,&nbsp;errorvalue)&nbsp;is&nbsp;appended&nbsp;to<br>
+cursor.messages;&nbsp;otherwise&nbsp;it&nbsp;is&nbsp;appended&nbsp;to<br>
+<a href="_mysql.html#connection">connection</a>.messages.&nbsp;Then&nbsp;errorclass&nbsp;is&nbsp;raised&nbsp;with&nbsp;errorvalue&nbsp;as<br>
+the&nbsp;value.<br>
+&nbsp;<br>
+You&nbsp;can&nbsp;override&nbsp;this&nbsp;with&nbsp;your&nbsp;own&nbsp;error&nbsp;handler&nbsp;by&nbsp;assigning&nbsp;it<br>
+to&nbsp;the&nbsp;instance.</tt></dd></dl>
+</td></tr></tbody></table>
+</p></body></html>

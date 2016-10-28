@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Exceptions & Errors - Python MySQL Documentation</title>
+  <meta name="author" content="Daniel Mikusa" />
+  <meta name="copyright" content="2006" />
+  <meta name="keywords" content="python mysql documentation introduction" />
+  <meta name="description" content="An introduction to MySQL in Python" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/css/mysql-docs.css" />
+  <link href="/css/syntaxhighlighter/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="/css/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<h1>Exceptions & Errors</h1>
+	
+	<p>According to the Python DB-API errors are indicated by raising exceptions.  There is
+	one top-level exception for the DB package that is used to catch all database exceptions
+	raised by that module.  In general this package is 'module.Error'.  In MySQL it is
+	'MySQLdb.Error'.</p>
+
+	<p>Every DB-API statement that you execute has the potential to raise an exception.  So any
+	time you execute a database query you should surround it with a try/exception block.  This includes
+	connections, cursor requests, and statement executions.</p>
+	
+	<pre class="brush: python">
+		# Get data from database
+		try:
+			cur.execute("SELECT * FROM song")
+			rows = cur.fetchall()
+		except MySQLdb.Error, e:
+			try:
+				print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+			except IndexError:
+				print "MySQL Error: %s" % str(e)
+		# Print results in comma delimited format
+		for row in rows:
+			for col in row:
+				print "%s," % col
+			print "\n"</pre>
+
+	<div style="text-align: center;">
+	<table width="100%">
+		<tr>
+			<td><a href="row_results.html"><--</a></td>
+			<td><a href="index.html">Home</a></td>
+			<td><a href="cleanup.html">--></a></td>
+		</tr>
+	</table>
+	</div>
+    <!-- Syntax Highlighter -->
+    <script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/js/syntaxhighlighter/shBrushPython.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <!-- end Syntax Highlighter -->
+    <!-- Google Analytics -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "UA-776027-1";
+        urchinTracker();
+    </script>
+    <!-- end Google Analytics -->
+</body>
+</html>

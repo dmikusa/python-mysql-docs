@@ -1,0 +1,102 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module re</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>re</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python2.4/re.py">/usr/lib/python2.4/re.py</a><br><a href="http://www.python.org/doc/current/lib/module-re.html">Module Docs</a></font></td></tr></table>
+    <p><tt>Minimal&nbsp;"re"&nbsp;compatibility&nbsp;wrapper.&nbsp;&nbsp;See&nbsp;"sre"&nbsp;for&nbsp;documentation.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="sre_constants.html#error">sre_constants.error</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="error">class <strong>error</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="error-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="error-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-compile"><strong>compile</strong></a>(pattern, flags<font color="#909090">=0</font>)</dt><dd><tt>Compile&nbsp;a&nbsp;regular&nbsp;expression&nbsp;pattern,&nbsp;returning&nbsp;a&nbsp;pattern&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-escape"><strong>escape</strong></a>(pattern)</dt><dd><tt>Escape&nbsp;all&nbsp;non-alphanumeric&nbsp;characters&nbsp;in&nbsp;pattern.</tt></dd></dl>
+ <dl><dt><a name="-findall"><strong>findall</strong></a>(pattern, string, flags<font color="#909090">=0</font>)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;non-overlapping&nbsp;matches&nbsp;in&nbsp;the&nbsp;string.<br>
+&nbsp;<br>
+If&nbsp;one&nbsp;or&nbsp;more&nbsp;groups&nbsp;are&nbsp;present&nbsp;in&nbsp;the&nbsp;pattern,&nbsp;return&nbsp;a<br>
+list&nbsp;of&nbsp;groups;&nbsp;this&nbsp;will&nbsp;be&nbsp;a&nbsp;list&nbsp;of&nbsp;tuples&nbsp;if&nbsp;the&nbsp;pattern<br>
+has&nbsp;more&nbsp;than&nbsp;one&nbsp;group.<br>
+&nbsp;<br>
+Empty&nbsp;matches&nbsp;are&nbsp;included&nbsp;in&nbsp;the&nbsp;result.</tt></dd></dl>
+ <dl><dt><a name="-finditer"><strong>finditer</strong></a>(pattern, string, flags<font color="#909090">=0</font>)</dt><dd><tt>Return&nbsp;an&nbsp;iterator&nbsp;over&nbsp;all&nbsp;non-overlapping&nbsp;matches&nbsp;in&nbsp;the<br>
+string.&nbsp;&nbsp;For&nbsp;each&nbsp;match,&nbsp;the&nbsp;iterator&nbsp;returns&nbsp;a&nbsp;match&nbsp;object.<br>
+&nbsp;<br>
+Empty&nbsp;matches&nbsp;are&nbsp;included&nbsp;in&nbsp;the&nbsp;result.</tt></dd></dl>
+ <dl><dt><a name="-match"><strong>match</strong></a>(pattern, string, flags<font color="#909090">=0</font>)</dt><dd><tt>Try&nbsp;to&nbsp;apply&nbsp;the&nbsp;pattern&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;string,&nbsp;returning<br>
+a&nbsp;match&nbsp;object,&nbsp;or&nbsp;None&nbsp;if&nbsp;no&nbsp;match&nbsp;was&nbsp;found.</tt></dd></dl>
+ <dl><dt><a name="-purge"><strong>purge</strong></a>()</dt><dd><tt>Clear&nbsp;the&nbsp;regular&nbsp;expression&nbsp;cache</tt></dd></dl>
+ <dl><dt><a name="-search"><strong>search</strong></a>(pattern, string, flags<font color="#909090">=0</font>)</dt><dd><tt>Scan&nbsp;through&nbsp;string&nbsp;looking&nbsp;for&nbsp;a&nbsp;match&nbsp;to&nbsp;the&nbsp;pattern,&nbsp;returning<br>
+a&nbsp;match&nbsp;object,&nbsp;or&nbsp;None&nbsp;if&nbsp;no&nbsp;match&nbsp;was&nbsp;found.</tt></dd></dl>
+ <dl><dt><a name="-split"><strong>split</strong></a>(pattern, string, maxsplit<font color="#909090">=0</font>)</dt><dd><tt>Split&nbsp;the&nbsp;source&nbsp;string&nbsp;by&nbsp;the&nbsp;occurrences&nbsp;of&nbsp;the&nbsp;pattern,<br>
+returning&nbsp;a&nbsp;list&nbsp;containing&nbsp;the&nbsp;resulting&nbsp;substrings.</tt></dd></dl>
+ <dl><dt><a name="-sub"><strong>sub</strong></a>(pattern, repl, string, count<font color="#909090">=0</font>)</dt><dd><tt>Return&nbsp;the&nbsp;string&nbsp;obtained&nbsp;by&nbsp;replacing&nbsp;the&nbsp;leftmost<br>
+non-overlapping&nbsp;occurrences&nbsp;of&nbsp;the&nbsp;pattern&nbsp;in&nbsp;string&nbsp;by&nbsp;the<br>
+replacement&nbsp;repl.&nbsp;&nbsp;repl&nbsp;can&nbsp;be&nbsp;either&nbsp;a&nbsp;string&nbsp;or&nbsp;a&nbsp;callable;<br>
+if&nbsp;a&nbsp;callable,&nbsp;it's&nbsp;passed&nbsp;the&nbsp;match&nbsp;object&nbsp;and&nbsp;must&nbsp;return<br>
+a&nbsp;replacement&nbsp;string&nbsp;to&nbsp;be&nbsp;used.</tt></dd></dl>
+ <dl><dt><a name="-subn"><strong>subn</strong></a>(pattern, repl, string, count<font color="#909090">=0</font>)</dt><dd><tt>Return&nbsp;a&nbsp;2-tuple&nbsp;containing&nbsp;(new_string,&nbsp;number).<br>
+new_string&nbsp;is&nbsp;the&nbsp;string&nbsp;obtained&nbsp;by&nbsp;replacing&nbsp;the&nbsp;leftmost<br>
+non-overlapping&nbsp;occurrences&nbsp;of&nbsp;the&nbsp;pattern&nbsp;in&nbsp;the&nbsp;source<br>
+string&nbsp;by&nbsp;the&nbsp;replacement&nbsp;repl.&nbsp;&nbsp;number&nbsp;is&nbsp;the&nbsp;number&nbsp;of<br>
+substitutions&nbsp;that&nbsp;were&nbsp;made.&nbsp;repl&nbsp;can&nbsp;be&nbsp;either&nbsp;a&nbsp;string&nbsp;or&nbsp;a<br>
+callable;&nbsp;if&nbsp;a&nbsp;callable,&nbsp;it's&nbsp;passed&nbsp;the&nbsp;match&nbsp;object&nbsp;and&nbsp;must<br>
+return&nbsp;a&nbsp;replacement&nbsp;string&nbsp;to&nbsp;be&nbsp;used.</tt></dd></dl>
+ <dl><dt><a name="-template"><strong>template</strong></a>(pattern, flags<font color="#909090">=0</font>)</dt><dd><tt>Compile&nbsp;a&nbsp;template&nbsp;pattern,&nbsp;returning&nbsp;a&nbsp;pattern&nbsp;object</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>DOTALL</strong> = 16<br>
+<strong>I</strong> = 2<br>
+<strong>IGNORECASE</strong> = 2<br>
+<strong>L</strong> = 4<br>
+<strong>LOCALE</strong> = 4<br>
+<strong>M</strong> = 8<br>
+<strong>MULTILINE</strong> = 8<br>
+<strong>S</strong> = 16<br>
+<strong>U</strong> = 32<br>
+<strong>UNICODE</strong> = 32<br>
+<strong>VERBOSE</strong> = 64<br>
+<strong>X</strong> = 64<br>
+<strong>__all__</strong> = ['match', 'search', 'sub', 'subn', 'split', 'findall', 'compile', 'purge', 'template', 'escape', 'I', 'L', 'M', 'S', 'X', 'U', 'IGNORECASE', 'LOCALE', 'MULTILINE', 'DOTALL', ...]</td></tr></table>
+</body></html>

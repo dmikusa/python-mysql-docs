@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module _mysql</title></head><body bgcolor="#f0f0f8">
+
+<table summary="heading" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>_mysql</strong></big></big> (version 1.2.1_p2)</font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="">index</a><br><a href="file:///usr/lib/python2.4/site-packages/_mysql.so">/usr/lib/python2.4/site-packages/_mysql.so</a></font></td></tr></tbody></table>
+    <p><tt>an&nbsp;adaptation&nbsp;of&nbsp;the&nbsp;MySQL&nbsp;C&nbsp;API&nbsp;(mostly)<br>
+&nbsp;<br>
+You&nbsp;probably&nbsp;are&nbsp;better&nbsp;off&nbsp;using&nbsp;MySQLdb&nbsp;instead&nbsp;of&nbsp;using&nbsp;this<br>
+module&nbsp;directly.<br>
+&nbsp;<br>
+In&nbsp;general,&nbsp;renaming&nbsp;goes&nbsp;from&nbsp;mysql_*&nbsp;to&nbsp;_mysql.*.&nbsp;_mysql.<a href="#-connect">connect</a>()<br>
+returns&nbsp;a&nbsp;<a href="#connection">connection</a>&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(MYSQL).&nbsp;Functions&nbsp;which&nbsp;expect&nbsp;MYSQL&nbsp;*&nbsp;as<br>
+an&nbsp;argument&nbsp;are&nbsp;now&nbsp;methods&nbsp;of&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;A&nbsp;number&nbsp;of&nbsp;things<br>
+return&nbsp;<a href="#result">result</a>&nbsp;objects&nbsp;(MYSQL_RES).&nbsp;Functions&nbsp;which&nbsp;expect&nbsp;MYSQL_RES&nbsp;*&nbsp;as<br>
+an&nbsp;argument&nbsp;are&nbsp;now&nbsp;methods&nbsp;of&nbsp;the&nbsp;<a href="#result">result</a>&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;Deprecated&nbsp;functions<br>
+(as&nbsp;of&nbsp;3.23)&nbsp;are&nbsp;NOT&nbsp;implemented.</tt></p>
+<p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_mysql.html#connection">connection</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_mysql.html#result">result</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="connection">class <strong>connection</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>Returns&nbsp;a&nbsp;MYSQL&nbsp;<a href="#connection">connection</a>&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;Exclusive&nbsp;use&nbsp;of<br>
+keyword&nbsp;parameters&nbsp;strongly&nbsp;recommended.&nbsp;Consult&nbsp;the<br>
+MySQL&nbsp;C&nbsp;API&nbsp;documentation&nbsp;for&nbsp;more&nbsp;details.<br>
+&nbsp;<br>
+host<br>
+&nbsp;&nbsp;string,&nbsp;host&nbsp;to&nbsp;connect<br>
+&nbsp;<br>
+user<br>
+&nbsp;&nbsp;string,&nbsp;user&nbsp;to&nbsp;connect&nbsp;as<br>
+&nbsp;<br>
+passwd<br>
+&nbsp;&nbsp;string,&nbsp;password&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+db<br>
+&nbsp;&nbsp;string,&nbsp;database&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+port<br>
+&nbsp;&nbsp;integer,&nbsp;TCP/IP&nbsp;port&nbsp;to&nbsp;connect&nbsp;to<br>
+&nbsp;<br>
+unix_socket<br>
+&nbsp;&nbsp;string,&nbsp;location&nbsp;of&nbsp;unix_socket&nbsp;(UNIX-ish&nbsp;only)<br>
+&nbsp;<br>
+conv<br>
+&nbsp;&nbsp;mapping,&nbsp;maps&nbsp;MySQL&nbsp;FIELD_TYPE.*&nbsp;to&nbsp;Python&nbsp;functions&nbsp;which<br>
+&nbsp;&nbsp;convert&nbsp;a&nbsp;string&nbsp;to&nbsp;the&nbsp;appropriate&nbsp;Python&nbsp;type<br>
+&nbsp;<br>
+connect_timeout<br>
+&nbsp;&nbsp;number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;before&nbsp;the&nbsp;<a href="#connection">connection</a><br>
+&nbsp;&nbsp;attempt&nbsp;fails.<br>
+&nbsp;<br>
+compress<br>
+&nbsp;&nbsp;if&nbsp;set,&nbsp;gzip&nbsp;compression&nbsp;is&nbsp;enabled<br>
+&nbsp;<br>
+named_pipe<br>
+&nbsp;&nbsp;if&nbsp;set,&nbsp;connect&nbsp;to&nbsp;server&nbsp;via&nbsp;named&nbsp;pipe&nbsp;(Windows&nbsp;only)<br>
+&nbsp;<br>
+init_command<br>
+&nbsp;&nbsp;command&nbsp;which&nbsp;is&nbsp;run&nbsp;once&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;is&nbsp;created<br>
+&nbsp;<br>
+read_default_file<br>
+&nbsp;&nbsp;see&nbsp;the&nbsp;MySQL&nbsp;documentation&nbsp;for&nbsp;mysql_options()<br>
+&nbsp;<br>
+read_default_group<br>
+&nbsp;&nbsp;see&nbsp;the&nbsp;MySQL&nbsp;documentation&nbsp;for&nbsp;mysql_options()<br>
+&nbsp;<br>
+client_flag<br>
+&nbsp;&nbsp;client&nbsp;flags&nbsp;from&nbsp;MySQLdb.constants.CLIENT<br>
+&nbsp;<br>
+load_infile<br>
+&nbsp;&nbsp;int,&nbsp;non-zero&nbsp;enables&nbsp;LOAD&nbsp;LOCAL&nbsp;INFILE,&nbsp;zero&nbsp;disables<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="connection-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#connection-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<dl><dt><a name="connection-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#connection-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="connection-affected_rows"><strong>affected_rows</strong></a>(...)</dt><dd><tt>Return&nbsp;number&nbsp;of&nbsp;rows&nbsp;affected&nbsp;by&nbsp;the&nbsp;last&nbsp;query.<br>
+Non-standard.&nbsp;Use&nbsp;Cursor.rowcount.</tt></dd></dl>
+
+<dl><dt><a name="connection-autocommit"><strong>autocommit</strong></a>(...)</dt><dd><tt>Set&nbsp;the&nbsp;autocommit&nbsp;mode.&nbsp;True&nbsp;values&nbsp;enable;&nbsp;False&nbsp;value&nbsp;disable.</tt></dd></dl>
+
+<dl><dt><a name="connection-change_user"><strong>change_user</strong></a>(...)</dt><dd><tt>Changes&nbsp;the&nbsp;user&nbsp;and&nbsp;causes&nbsp;the&nbsp;database&nbsp;specified&nbsp;by&nbsp;db&nbsp;to<br>
+become&nbsp;the&nbsp;default&nbsp;(current)&nbsp;database&nbsp;on&nbsp;the&nbsp;<a href="#connection">connection</a><br>
+specified&nbsp;by&nbsp;mysql.&nbsp;In&nbsp;subsequent&nbsp;queries,&nbsp;this&nbsp;database&nbsp;is<br>
+the&nbsp;default&nbsp;for&nbsp;table&nbsp;references&nbsp;that&nbsp;do&nbsp;not&nbsp;include&nbsp;an<br>
+explicit&nbsp;database&nbsp;specifier.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;was&nbsp;introduced&nbsp;in&nbsp;MySQL&nbsp;Version&nbsp;3.23.3.<br>
+&nbsp;<br>
+Fails&nbsp;unless&nbsp;the&nbsp;connected&nbsp;user&nbsp;can&nbsp;be&nbsp;authenticated&nbsp;or&nbsp;if&nbsp;he<br>
+doesn't&nbsp;have&nbsp;permission&nbsp;to&nbsp;use&nbsp;the&nbsp;database.&nbsp;In&nbsp;this&nbsp;case&nbsp;the<br>
+user&nbsp;and&nbsp;database&nbsp;are&nbsp;not&nbsp;changed.<br>
+&nbsp;<br>
+The&nbsp;db&nbsp;parameter&nbsp;may&nbsp;be&nbsp;set&nbsp;to&nbsp;None&nbsp;if&nbsp;you&nbsp;don't&nbsp;want&nbsp;to&nbsp;have<br>
+a&nbsp;default&nbsp;database.</tt></dd></dl>
+
+<dl><dt><a name="connection-character_set_name"><strong>character_set_name</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;default&nbsp;character&nbsp;set&nbsp;for&nbsp;the&nbsp;current&nbsp;<a href="#connection">connection</a>.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-close"><strong>close</strong></a>(...)</dt><dd><tt>Close&nbsp;the&nbsp;<a href="#connection">connection</a>.&nbsp;No&nbsp;further&nbsp;activity&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="connection-commit"><strong>commit</strong></a>(...)</dt><dd><tt>Commits&nbsp;the&nbsp;current&nbsp;transaction</tt></dd></dl>
+
+<dl><dt><a name="connection-dump_debug_info"><strong>dump_debug_info</strong></a>(...)</dt><dd><tt>Instructs&nbsp;the&nbsp;server&nbsp;to&nbsp;write&nbsp;some&nbsp;debug&nbsp;information&nbsp;to&nbsp;the<br>
+log.&nbsp;The&nbsp;connected&nbsp;user&nbsp;must&nbsp;have&nbsp;the&nbsp;process&nbsp;privilege&nbsp;for<br>
+this&nbsp;to&nbsp;work.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-errno"><strong>errno</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;error&nbsp;code&nbsp;for&nbsp;the&nbsp;most&nbsp;recently&nbsp;invoked&nbsp;API&nbsp;function<br>
+that&nbsp;can&nbsp;succeed&nbsp;or&nbsp;fail.&nbsp;A&nbsp;return&nbsp;value&nbsp;of&nbsp;zero&nbsp;means&nbsp;that&nbsp;no&nbsp;error<br>
+occurred.</tt></dd></dl>
+
+<dl><dt><a name="connection-error"><strong>error</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;error&nbsp;message&nbsp;for&nbsp;the&nbsp;most&nbsp;recently&nbsp;invoked&nbsp;API&nbsp;function<br>
+that&nbsp;can&nbsp;succeed&nbsp;or&nbsp;fail.&nbsp;An&nbsp;empty&nbsp;string&nbsp;()&nbsp;is&nbsp;returned&nbsp;if&nbsp;no&nbsp;error<br>
+occurred.</tt></dd></dl>
+
+<dl><dt><a name="connection-escape"><strong>escape</strong></a>(...)</dt><dd><tt><a href="#connection-escape">escape</a>(obj,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;obj<br>
+using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;SQL&nbsp;literal&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="connection-escape_string"><strong>escape_string</strong></a>(...)</dt><dd><tt><a href="#connection-escape_string">escape_string</a>(s)&nbsp;--&nbsp;quote&nbsp;any&nbsp;SQL-interpreted&nbsp;characters&nbsp;in&nbsp;string&nbsp;s.<br>
+&nbsp;<br>
+Use&nbsp;<a href="#connection">connection</a>.<a href="#connection-escape_string">escape_string</a>(s),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#connection-escape_string">escape_string</a>(s)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.&nbsp;You&nbsp;are<br>
+probably&nbsp;better&nbsp;off&nbsp;using&nbsp;<a href="#connection">connection</a>.<a href="#connection-escape">escape</a>(o)&nbsp;instead,&nbsp;since<br>
+it&nbsp;will&nbsp;escape&nbsp;entire&nbsp;sequences&nbsp;as&nbsp;well&nbsp;as&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="connection-field_count"><strong>field_count</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;columns&nbsp;for&nbsp;the&nbsp;most&nbsp;recent&nbsp;query&nbsp;on&nbsp;the<br>
+<a href="#connection">connection</a>.&nbsp;Non-standard.&nbsp;Will&nbsp;probably&nbsp;give&nbsp;you&nbsp;bogus&nbsp;results<br>
+on&nbsp;most&nbsp;cursor&nbsp;classes.&nbsp;Use&nbsp;Cursor.rowcount.</tt></dd></dl>
+
+<dl><dt><a name="connection-get_character_set_info"><strong>get_character_set_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;dict&nbsp;with&nbsp;information&nbsp;about&nbsp;the&nbsp;current&nbsp;character&nbsp;set:<br>
+&nbsp;<br>
+collation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;collation&nbsp;name<br>
+name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;character&nbsp;set&nbsp;name<br>
+comment<br>
+&nbsp;&nbsp;&nbsp;&nbsp;comment&nbsp;or&nbsp;descriptive&nbsp;name<br>
+dir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;character&nbsp;set&nbsp;directory<br>
+mbminlen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;min.&nbsp;length&nbsp;for&nbsp;multibyte&nbsp;string<br>
+mbmaxlen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;max.&nbsp;length&nbsp;for&nbsp;multibyte&nbsp;string<br>
+&nbsp;<br>
+Not&nbsp;all&nbsp;keys&nbsp;may&nbsp;be&nbsp;present,&nbsp;particularly&nbsp;dir.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-get_host_info"><strong>get_host_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;that&nbsp;represents&nbsp;the&nbsp;MySQL&nbsp;client&nbsp;library<br>
+version.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-get_proto_info"><strong>get_proto_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;an&nbsp;unsigned&nbsp;integer&nbsp;representing&nbsp;the&nbsp;protocol&nbsp;version<br>
+used&nbsp;by&nbsp;the&nbsp;current&nbsp;<a href="#connection">connection</a>.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-get_server_info"><strong>get_server_info</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;that&nbsp;represents&nbsp;the&nbsp;server&nbsp;version&nbsp;number.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-info"><strong>info</strong></a>(...)</dt><dd><tt>Retrieves&nbsp;a&nbsp;string&nbsp;providing&nbsp;information&nbsp;about&nbsp;the&nbsp;most<br>
+recently&nbsp;executed&nbsp;query.&nbsp;Non-standard.&nbsp;Use&nbsp;messages&nbsp;or<br>
+Cursor.messages.</tt></dd></dl>
+
+<dl><dt><a name="connection-insert_id"><strong>insert_id</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;ID&nbsp;generated&nbsp;for&nbsp;an&nbsp;AUTO_INCREMENT&nbsp;column&nbsp;by&nbsp;the&nbsp;previous<br>
+query.&nbsp;Use&nbsp;this&nbsp;function&nbsp;after&nbsp;you&nbsp;have&nbsp;performed&nbsp;an&nbsp;INSERT&nbsp;query&nbsp;into&nbsp;a<br>
+table&nbsp;that&nbsp;contains&nbsp;an&nbsp;AUTO_INCREMENT&nbsp;field.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;this&nbsp;returns&nbsp;0&nbsp;if&nbsp;the&nbsp;previous&nbsp;query&nbsp;does&nbsp;not<br>
+generate&nbsp;an&nbsp;AUTO_INCREMENT&nbsp;value.&nbsp;If&nbsp;you&nbsp;need&nbsp;to&nbsp;save&nbsp;the&nbsp;value&nbsp;for<br>
+later,&nbsp;be&nbsp;sure&nbsp;to&nbsp;call&nbsp;this&nbsp;immediately&nbsp;after&nbsp;the&nbsp;query<br>
+that&nbsp;generates&nbsp;the&nbsp;value.<br>
+&nbsp;<br>
+The&nbsp;ID&nbsp;is&nbsp;updated&nbsp;after&nbsp;INSERT&nbsp;and&nbsp;UPDATE&nbsp;statements&nbsp;that&nbsp;generate<br>
+an&nbsp;AUTO_INCREMENT&nbsp;value&nbsp;or&nbsp;that&nbsp;set&nbsp;a&nbsp;column&nbsp;value&nbsp;to<br>
+LAST_INSERT_ID(expr).&nbsp;See&nbsp;section&nbsp;6.3.5.2&nbsp;Miscellaneous&nbsp;Functions<br>
+in&nbsp;the&nbsp;MySQL&nbsp;documentation.<br>
+&nbsp;<br>
+Also&nbsp;note&nbsp;that&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;SQL&nbsp;LAST_INSERT_ID()&nbsp;function&nbsp;always<br>
+contains&nbsp;the&nbsp;most&nbsp;recently&nbsp;generated&nbsp;AUTO_INCREMENT&nbsp;value,&nbsp;and&nbsp;is&nbsp;not<br>
+reset&nbsp;between&nbsp;queries&nbsp;because&nbsp;the&nbsp;value&nbsp;of&nbsp;that&nbsp;function&nbsp;is&nbsp;maintained<br>
+in&nbsp;the&nbsp;server.</tt></dd></dl>
+
+<dl><dt><a name="connection-kill"><strong>kill</strong></a>(...)</dt><dd><tt>Asks&nbsp;the&nbsp;server&nbsp;to&nbsp;kill&nbsp;the&nbsp;thread&nbsp;specified&nbsp;by&nbsp;pid.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-next_result"><strong>next_result</strong></a>(...)</dt><dd><tt>If&nbsp;more&nbsp;query&nbsp;results&nbsp;exist,&nbsp;<a href="#connection-next_result">next_result</a>()&nbsp;reads&nbsp;the&nbsp;next&nbsp;query<br>
+results&nbsp;and&nbsp;returns&nbsp;the&nbsp;status&nbsp;back&nbsp;to&nbsp;application.<br>
+&nbsp;<br>
+After&nbsp;calling&nbsp;<a href="#connection-next_result">next_result</a>()&nbsp;the&nbsp;state&nbsp;of&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;is&nbsp;as&nbsp;if<br>
+you&nbsp;had&nbsp;called&nbsp;<a href="#connection-query">query</a>()&nbsp;for&nbsp;the&nbsp;next&nbsp;query.&nbsp;This&nbsp;means&nbsp;that&nbsp;you&nbsp;can<br>
+now&nbsp;call&nbsp;<a href="#connection-store_result">store_result</a>(),&nbsp;<a href="#connection-warning_count">warning_count</a>(),&nbsp;<a href="#connection-affected_rows">affected_rows</a>()<br>
+,&nbsp;and&nbsp;so&nbsp;forth.&nbsp;<br>
+&nbsp;<br>
+Returns&nbsp;0&nbsp;if&nbsp;there&nbsp;are&nbsp;more&nbsp;results;&nbsp;-1&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;results<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-ping"><strong>ping</strong></a>(...)</dt><dd><tt>Checks&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;to&nbsp;the&nbsp;server&nbsp;is<br>
+working.&nbsp;If&nbsp;it&nbsp;has&nbsp;gone&nbsp;down,&nbsp;an&nbsp;automatic&nbsp;reconnection&nbsp;is<br>
+attempted.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;can&nbsp;be&nbsp;used&nbsp;by&nbsp;clients&nbsp;that&nbsp;remain&nbsp;idle&nbsp;for&nbsp;a<br>
+long&nbsp;while,&nbsp;to&nbsp;check&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;server&nbsp;has&nbsp;closed&nbsp;the<br>
+<a href="#connection">connection</a>&nbsp;and&nbsp;reconnect&nbsp;if&nbsp;necessary.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-query"><strong>query</strong></a>(...)</dt><dd><tt>Execute&nbsp;a&nbsp;query.&nbsp;<a href="#connection-store_result">store_result</a>()&nbsp;or&nbsp;<a href="#connection-use_result">use_result</a>()&nbsp;will&nbsp;get&nbsp;the<br>
+<a href="#result">result</a>&nbsp;set,&nbsp;if&nbsp;any.&nbsp;Non-standard.&nbsp;Use&nbsp;cursor()&nbsp;to&nbsp;create&nbsp;a&nbsp;cursor,<br>
+then&nbsp;cursor.execute().</tt></dd></dl>
+
+<dl><dt><a name="connection-rollback"><strong>rollback</strong></a>(...)</dt><dd><tt>Rolls&nbsp;backs&nbsp;the&nbsp;current&nbsp;transaction</tt></dd></dl>
+
+<dl><dt><a name="connection-select_db"><strong>select_db</strong></a>(...)</dt><dd><tt>Causes&nbsp;the&nbsp;database&nbsp;specified&nbsp;by&nbsp;db&nbsp;to&nbsp;become&nbsp;the&nbsp;default<br>
+(current)&nbsp;database&nbsp;on&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;specified&nbsp;by&nbsp;mysql.&nbsp;In&nbsp;subsequent<br>
+queries,&nbsp;this&nbsp;database&nbsp;is&nbsp;the&nbsp;default&nbsp;for&nbsp;table&nbsp;references&nbsp;that&nbsp;do&nbsp;not<br>
+include&nbsp;an&nbsp;explicit&nbsp;database&nbsp;specifier.<br>
+&nbsp;<br>
+Fails&nbsp;unless&nbsp;the&nbsp;connected&nbsp;user&nbsp;can&nbsp;be&nbsp;authenticated&nbsp;as&nbsp;having<br>
+permission&nbsp;to&nbsp;use&nbsp;the&nbsp;database.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-set_character_set"><strong>set_character_set</strong></a>(...)</dt><dd><tt>Sets&nbsp;the&nbsp;default&nbsp;character&nbsp;set&nbsp;for&nbsp;the&nbsp;current&nbsp;<a href="#connection">connection</a>.<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-set_server_option"><strong>set_server_option</strong></a>(...)</dt><dd><tt><a href="#connection-set_server_option">set_server_option</a>(option)&nbsp;--&nbsp;Enables&nbsp;or&nbsp;disables&nbsp;an&nbsp;option<br>
+for&nbsp;the&nbsp;<a href="#connection">connection</a>.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-shutdown"><strong>shutdown</strong></a>(...)</dt><dd><tt>Asks&nbsp;the&nbsp;database&nbsp;server&nbsp;to&nbsp;shut&nbsp;down.&nbsp;The&nbsp;connected&nbsp;user&nbsp;must<br>
+have&nbsp;shutdown&nbsp;privileges.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-sqlstate"><strong>sqlstate</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;string&nbsp;containing&nbsp;the&nbsp;SQLSTATE&nbsp;error&nbsp;code<br>
+for&nbsp;the&nbsp;last&nbsp;error.&nbsp;The&nbsp;error&nbsp;code&nbsp;consists&nbsp;of&nbsp;five&nbsp;characters.<br>
+'00000'&nbsp;means&nbsp;"no&nbsp;error."&nbsp;The&nbsp;values&nbsp;are&nbsp;specified&nbsp;by&nbsp;ANSI&nbsp;SQL<br>
+and&nbsp;ODBC.&nbsp;For&nbsp;a&nbsp;list&nbsp;of&nbsp;possible&nbsp;values,&nbsp;see&nbsp;section&nbsp;23<br>
+Error&nbsp;Handling&nbsp;in&nbsp;MySQL&nbsp;in&nbsp;the&nbsp;MySQL&nbsp;Manual.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;not&nbsp;all&nbsp;MySQL&nbsp;errors&nbsp;are&nbsp;yet&nbsp;mapped&nbsp;to&nbsp;SQLSTATE's.<br>
+The&nbsp;value&nbsp;'HY000'&nbsp;(general&nbsp;error)&nbsp;is&nbsp;used&nbsp;for&nbsp;unmapped&nbsp;errors.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-stat"><strong>stat</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;character&nbsp;string&nbsp;containing&nbsp;information&nbsp;similar&nbsp;to<br>
+that&nbsp;provided&nbsp;by&nbsp;the&nbsp;mysqladmin&nbsp;status&nbsp;command.&nbsp;This&nbsp;includes<br>
+uptime&nbsp;in&nbsp;seconds&nbsp;and&nbsp;the&nbsp;number&nbsp;of&nbsp;running&nbsp;threads,<br>
+questions,&nbsp;reloads,&nbsp;and&nbsp;open&nbsp;tables.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-store_result"><strong>store_result</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;<a href="#result">result</a>&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;acquired&nbsp;by&nbsp;mysql_store_result<br>
+(results&nbsp;stored&nbsp;in&nbsp;the&nbsp;client).&nbsp;If&nbsp;no&nbsp;results&nbsp;are&nbsp;available,<br>
+None&nbsp;is&nbsp;returned.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-string_literal"><strong>string_literal</strong></a>(...)</dt><dd><tt><a href="#connection-string_literal">string_literal</a>(obj)&nbsp;--&nbsp;converts&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;obj&nbsp;into&nbsp;a&nbsp;SQL&nbsp;string&nbsp;literal.<br>
+This&nbsp;means,&nbsp;any&nbsp;special&nbsp;SQL&nbsp;characters&nbsp;are&nbsp;escaped,&nbsp;and&nbsp;it&nbsp;is&nbsp;enclosed<br>
+within&nbsp;single&nbsp;quotes.&nbsp;In&nbsp;other&nbsp;words,&nbsp;it&nbsp;performs:<br>
+&nbsp;<br>
+"'%s'"&nbsp;%&nbsp;<a href="#connection-escape_string">escape_string</a>(str(obj))<br>
+&nbsp;<br>
+Use&nbsp;<a href="#connection">connection</a>.<a href="#connection-string_literal">string_literal</a>(obj),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#connection-string_literal">string_literal</a>(obj)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="connection-thread_id"><strong>thread_id</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;thread&nbsp;ID&nbsp;of&nbsp;the&nbsp;current&nbsp;<a href="#connection">connection</a>.&nbsp;This&nbsp;value<br>
+can&nbsp;be&nbsp;used&nbsp;as&nbsp;an&nbsp;argument&nbsp;to&nbsp;<a href="#connection-kill">kill</a>()&nbsp;to&nbsp;kill&nbsp;the&nbsp;thread.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;is&nbsp;lost&nbsp;and&nbsp;you&nbsp;reconnect&nbsp;with&nbsp;<a href="#connection-ping">ping</a>(),&nbsp;the<br>
+thread&nbsp;ID&nbsp;will&nbsp;change.&nbsp;This&nbsp;means&nbsp;you&nbsp;should&nbsp;not&nbsp;get&nbsp;the<br>
+thread&nbsp;ID&nbsp;and&nbsp;store&nbsp;it&nbsp;for&nbsp;later.&nbsp;You&nbsp;should&nbsp;get&nbsp;it&nbsp;when&nbsp;you<br>
+need&nbsp;it.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-use_result"><strong>use_result</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;<a href="#result">result</a>&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;acquired&nbsp;by&nbsp;mysql_use_result<br>
+(results&nbsp;stored&nbsp;in&nbsp;the&nbsp;server).&nbsp;If&nbsp;no&nbsp;results&nbsp;are&nbsp;available,<br>
+None&nbsp;is&nbsp;returned.&nbsp;Non-standard.</tt></dd></dl>
+
+<dl><dt><a name="connection-warning_count"><strong>warning_count</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;warnings&nbsp;generated&nbsp;during&nbsp;execution<br>
+of&nbsp;the&nbsp;previous&nbsp;SQL&nbsp;statement.<br>
+&nbsp;<br>
+Non-standard.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;</dt><dd><tt>T.<a href="#connection-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dd></dl>
+
+<dl><dt><strong>client_flag</strong> = &lt;member 'client_flag' of '_mysql.connection' objects&gt;</dt><dd><tt>Client&nbsp;flags;&nbsp;refer&nbsp;to&nbsp;MySQLdb.constants.CLIENT</tt></dd></dl>
+
+<dl><dt><strong>converter</strong> = &lt;member 'converter' of '_mysql.connection' objects&gt;</dt><dd><tt>Type&nbsp;conversion&nbsp;mapping</tt></dd></dl>
+
+<dl><dt><strong>open</strong> = &lt;member 'open' of '_mysql.connection' objects&gt;</dt><dd><tt>True&nbsp;if&nbsp;<a href="#connection">connection</a>&nbsp;is&nbsp;open</tt></dd></dl>
+
+<dl><dt><strong>port</strong> = &lt;member 'port' of '_mysql.connection' objects&gt;</dt><dd><tt>TCP/IP&nbsp;port&nbsp;of&nbsp;the&nbsp;server&nbsp;<a href="#connection">connection</a></tt></dd></dl>
+
+<dl><dt><strong>server_capabilities</strong> = &lt;member 'server_capabilities' of '_mysql.connection' objects&gt;</dt><dd><tt>Capabilites&nbsp;of&nbsp;server;&nbsp;consult&nbsp;MySQLdb.constants.CLIENT</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="result">class <strong>result</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt><a href="#result">result</a>(<a href="#connection">connection</a>,&nbsp;use=0,&nbsp;converter={})&nbsp;--&nbsp;Result&nbsp;set&nbsp;from&nbsp;a&nbsp;query.<br>
+&nbsp;<br>
+Creating&nbsp;instances&nbsp;of&nbsp;this&nbsp;class&nbsp;directly&nbsp;is&nbsp;an&nbsp;excellent&nbsp;way&nbsp;to<br>
+shoot&nbsp;yourself&nbsp;in&nbsp;the&nbsp;foot.&nbsp;If&nbsp;using&nbsp;_mysql.<a href="#connection">connection</a>&nbsp;directly,<br>
+use&nbsp;<a href="#connection">connection</a>.store_result()&nbsp;or&nbsp;<a href="#connection">connection</a>.use_result()&nbsp;instead.<br>
+If&nbsp;using&nbsp;MySQLdb.Connection,&nbsp;this&nbsp;is&nbsp;done&nbsp;by&nbsp;the&nbsp;cursor&nbsp;class.<br>
+Just&nbsp;forget&nbsp;you&nbsp;ever&nbsp;saw&nbsp;this.&nbsp;Forget...&nbsp;FOR-GET...<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="result-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#result-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<dl><dt><a name="result-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#result-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="result-data_seek"><strong>data_seek</strong></a>(...)</dt><dd><tt><a href="#result-data_seek">data_seek</a>(n)&nbsp;--&nbsp;seek&nbsp;to&nbsp;row&nbsp;n&nbsp;of&nbsp;<a href="#result">result</a>&nbsp;set</tt></dd></dl>
+
+<dl><dt><a name="result-describe"><strong>describe</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;sequence&nbsp;of&nbsp;7-tuples&nbsp;required&nbsp;by&nbsp;the&nbsp;DB-API&nbsp;for<br>
+the&nbsp;Cursor.description&nbsp;attribute.</tt></dd></dl>
+
+<dl><dt><a name="result-fetch_row"><strong>fetch_row</strong></a>(...)</dt><dd><tt><a href="#result-fetch_row">fetch_row</a>([maxrows,&nbsp;how])&nbsp;--&nbsp;Fetches&nbsp;up&nbsp;to&nbsp;maxrows&nbsp;as&nbsp;a&nbsp;tuple.<br>
+The&nbsp;rows&nbsp;are&nbsp;formatted&nbsp;according&nbsp;to&nbsp;how:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;--&nbsp;tuples&nbsp;(default)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;--&nbsp;dictionaries,&nbsp;key=column&nbsp;or&nbsp;table.column&nbsp;if&nbsp;duplicated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;--&nbsp;dictionaries,&nbsp;key=table.column</tt></dd></dl>
+
+<dl><dt><a name="result-field_flags"><strong>field_flags</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;field&nbsp;flags,&nbsp;one&nbsp;for&nbsp;each&nbsp;column&nbsp;in&nbsp;the&nbsp;<a href="#result">result</a>.</tt></dd></dl>
+
+<dl><dt><a name="result-num_fields"><strong>num_fields</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;fields&nbsp;(column)&nbsp;in&nbsp;the&nbsp;<a href="#result">result</a>.</tt></dd></dl>
+
+<dl><dt><a name="result-num_rows"><strong>num_rows</strong></a>(...)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;in&nbsp;the&nbsp;<a href="#result">result</a>&nbsp;set.&nbsp;Note&nbsp;that&nbsp;if<br>
+use=1,&nbsp;this&nbsp;will&nbsp;not&nbsp;return&nbsp;a&nbsp;valid&nbsp;value&nbsp;until&nbsp;the&nbsp;entire&nbsp;<a href="#result">result</a><br>
+set&nbsp;has&nbsp;been&nbsp;read.</tt></dd></dl>
+
+<dl><dt><a name="result-row_seek"><strong>row_seek</strong></a>(...)</dt><dd><tt><a href="#result-row_seek">row_seek</a>(n)&nbsp;--&nbsp;seek&nbsp;by&nbsp;offset&nbsp;n&nbsp;rows&nbsp;of&nbsp;<a href="#result">result</a>&nbsp;set</tt></dd></dl>
+
+<dl><dt><a name="result-row_tell"><strong>row_tell</strong></a>(...)</dt><dd><tt><a href="#result-row_tell">row_tell</a>()&nbsp;--&nbsp;return&nbsp;the&nbsp;current&nbsp;row&nbsp;number&nbsp;of&nbsp;the&nbsp;<a href="#result">result</a>&nbsp;set.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object&gt;</dt><dd><tt>T.<a href="#result-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dd></dl>
+
+<dl><dt><strong>converter</strong> = &lt;member 'converter' of '_mysql.result' objects&gt;</dt><dd><tt>Type&nbsp;conversion&nbsp;mapping</tt></dd></dl>
+
+</td></tr></tbody></table></p></td></tr></tbody></table></p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-connect"><strong>connect</strong></a>(...)</dt><dd><tt>Returns&nbsp;a&nbsp;MYSQL&nbsp;<a href="#connection">connection</a>&nbsp;<a href="__builtin__.html#object">object</a>.&nbsp;Exclusive&nbsp;use&nbsp;of<br>
+keyword&nbsp;parameters&nbsp;strongly&nbsp;recommended.&nbsp;Consult&nbsp;the<br>
+MySQL&nbsp;C&nbsp;API&nbsp;documentation&nbsp;for&nbsp;more&nbsp;details.<br>
+&nbsp;<br>
+host<br>
+&nbsp;&nbsp;string,&nbsp;host&nbsp;to&nbsp;connect<br>
+&nbsp;<br>
+user<br>
+&nbsp;&nbsp;string,&nbsp;user&nbsp;to&nbsp;connect&nbsp;as<br>
+&nbsp;<br>
+passwd<br>
+&nbsp;&nbsp;string,&nbsp;password&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+db<br>
+&nbsp;&nbsp;string,&nbsp;database&nbsp;to&nbsp;use<br>
+&nbsp;<br>
+port<br>
+&nbsp;&nbsp;integer,&nbsp;TCP/IP&nbsp;port&nbsp;to&nbsp;connect&nbsp;to<br>
+&nbsp;<br>
+unix_socket<br>
+&nbsp;&nbsp;string,&nbsp;location&nbsp;of&nbsp;unix_socket&nbsp;(UNIX-ish&nbsp;only)<br>
+&nbsp;<br>
+conv<br>
+&nbsp;&nbsp;mapping,&nbsp;maps&nbsp;MySQL&nbsp;FIELD_TYPE.*&nbsp;to&nbsp;Python&nbsp;functions&nbsp;which<br>
+&nbsp;&nbsp;convert&nbsp;a&nbsp;string&nbsp;to&nbsp;the&nbsp;appropriate&nbsp;Python&nbsp;type<br>
+&nbsp;<br>
+connect_timeout<br>
+&nbsp;&nbsp;number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;before&nbsp;the&nbsp;<a href="#connection">connection</a><br>
+&nbsp;&nbsp;attempt&nbsp;fails.<br>
+&nbsp;<br>
+compress<br>
+&nbsp;&nbsp;if&nbsp;set,&nbsp;gzip&nbsp;compression&nbsp;is&nbsp;enabled<br>
+&nbsp;<br>
+named_pipe<br>
+&nbsp;&nbsp;if&nbsp;set,&nbsp;connect&nbsp;to&nbsp;server&nbsp;via&nbsp;named&nbsp;pipe&nbsp;(Windows&nbsp;only)<br>
+&nbsp;<br>
+init_command<br>
+&nbsp;&nbsp;command&nbsp;which&nbsp;is&nbsp;run&nbsp;once&nbsp;the&nbsp;<a href="#connection">connection</a>&nbsp;is&nbsp;created<br>
+&nbsp;<br>
+read_default_file<br>
+&nbsp;&nbsp;see&nbsp;the&nbsp;MySQL&nbsp;documentation&nbsp;for&nbsp;mysql_options()<br>
+&nbsp;<br>
+read_default_group<br>
+&nbsp;&nbsp;see&nbsp;the&nbsp;MySQL&nbsp;documentation&nbsp;for&nbsp;mysql_options()<br>
+&nbsp;<br>
+client_flag<br>
+&nbsp;&nbsp;client&nbsp;flags&nbsp;from&nbsp;MySQLdb.constants.CLIENT<br>
+&nbsp;<br>
+load_infile<br>
+&nbsp;&nbsp;int,&nbsp;non-zero&nbsp;enables&nbsp;LOAD&nbsp;LOCAL&nbsp;INFILE,&nbsp;zero&nbsp;disables</tt></dd></dl>
+ <dl><dt><a name="-debug"><strong>debug</strong></a>(...)</dt><dd><tt>Does&nbsp;a&nbsp;DBUG_PUSH&nbsp;with&nbsp;the&nbsp;given&nbsp;string.<br>
+mysql_debug()&nbsp;uses&nbsp;the&nbsp;Fred&nbsp;Fish&nbsp;debug&nbsp;library.<br>
+To&nbsp;use&nbsp;this&nbsp;function,&nbsp;you&nbsp;must&nbsp;compile&nbsp;the&nbsp;client&nbsp;library&nbsp;to<br>
+support&nbsp;debugging.</tt></dd></dl>
+ <dl><dt><a name="-escape"><strong>escape</strong></a>(...)</dt><dd><tt><a href="#-escape">escape</a>(obj,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;obj<br>
+using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;SQL&nbsp;literal&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-escape_dict"><strong>escape_dict</strong></a>(...)</dt><dd><tt><a href="#-escape_sequence">escape_sequence</a>(d,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in<br>
+dictionary&nbsp;d&nbsp;using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;escaped&nbsp;items.</tt></dd></dl>
+ <dl><dt><a name="-escape_sequence"><strong>escape_sequence</strong></a>(...)</dt><dd><tt><a href="#-escape_sequence">escape_sequence</a>(seq,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in&nbsp;sequence<br>
+seq&nbsp;using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;escaped&nbsp;items.</tt></dd></dl>
+ <dl><dt><a name="-escape_string"><strong>escape_string</strong></a>(...)</dt><dd><tt><a href="#-escape_string">escape_string</a>(s)&nbsp;--&nbsp;quote&nbsp;any&nbsp;SQL-interpreted&nbsp;characters&nbsp;in&nbsp;string&nbsp;s.<br>
+&nbsp;<br>
+Use&nbsp;<a href="#connection">connection</a>.<a href="#-escape_string">escape_string</a>(s),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#-escape_string">escape_string</a>(s)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.&nbsp;You&nbsp;are<br>
+probably&nbsp;better&nbsp;off&nbsp;using&nbsp;<a href="#connection">connection</a>.<a href="#-escape">escape</a>(o)&nbsp;instead,&nbsp;since<br>
+it&nbsp;will&nbsp;escape&nbsp;entire&nbsp;sequences&nbsp;as&nbsp;well&nbsp;as&nbsp;strings.</tt></dd></dl>
+ <dl><dt><a name="-get_client_info"><strong>get_client_info</strong></a>(...)</dt><dd><tt><a href="#-get_client_info">get_client_info</a>()&nbsp;--&nbsp;Returns&nbsp;a&nbsp;string&nbsp;that&nbsp;represents<br>
+the&nbsp;client&nbsp;library&nbsp;version.</tt></dd></dl>
+ <dl><dt><a name="-server_end"><strong>server_end</strong></a>(...)</dt><dd><tt>Shut&nbsp;down&nbsp;embedded&nbsp;server.&nbsp;If&nbsp;not&nbsp;using&nbsp;an&nbsp;embedded&nbsp;server,&nbsp;this<br>
+does&nbsp;nothing.</tt></dd></dl>
+ <dl><dt><a name="-server_init"><strong>server_init</strong></a>(...)</dt><dd><tt>Initialize&nbsp;embedded&nbsp;server.&nbsp;If&nbsp;this&nbsp;client&nbsp;is&nbsp;not&nbsp;linked&nbsp;against<br>
+the&nbsp;embedded&nbsp;server&nbsp;library,&nbsp;this&nbsp;function&nbsp;does&nbsp;nothing.<br>
+&nbsp;<br>
+args&nbsp;--&nbsp;sequence&nbsp;of&nbsp;command-line&nbsp;arguments<br>
+groups&nbsp;--&nbsp;sequence&nbsp;of&nbsp;groups&nbsp;to&nbsp;use&nbsp;in&nbsp;defaults&nbsp;files</tt></dd></dl>
+ <dl><dt><a name="-string_literal"><strong>string_literal</strong></a>(...)</dt><dd><tt><a href="#-string_literal">string_literal</a>(obj)&nbsp;--&nbsp;converts&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;obj&nbsp;into&nbsp;a&nbsp;SQL&nbsp;string&nbsp;literal.<br>
+This&nbsp;means,&nbsp;any&nbsp;special&nbsp;SQL&nbsp;characters&nbsp;are&nbsp;escaped,&nbsp;and&nbsp;it&nbsp;is&nbsp;enclosed<br>
+within&nbsp;single&nbsp;quotes.&nbsp;In&nbsp;other&nbsp;words,&nbsp;it&nbsp;performs:<br>
+&nbsp;<br>
+"'%s'"&nbsp;%&nbsp;<a href="#-escape_string">escape_string</a>(str(obj))<br>
+&nbsp;<br>
+Use&nbsp;<a href="#connection">connection</a>.<a href="#-string_literal">string_literal</a>(obj),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#-string_literal">string_literal</a>(obj)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.</tt></dd></dl>
+ <dl><dt><a name="-thread_safe"><strong>thread_safe</strong></a>(...)</dt><dd><tt>Indicates&nbsp;whether&nbsp;the&nbsp;client&nbsp;is&nbsp;compiled&nbsp;as&nbsp;thread-safe.</tt></dd></dl>
+</td></tr></tbody></table></p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#55aa55">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>NULL</strong> = 'NULL'<br>
+<strong>__version__</strong> = '1.2.1_p2'<br>
+<strong>version_info</strong> = (1, 2, 1, 'final', 2)</td></tr></tbody></table>
+</p></body></html>

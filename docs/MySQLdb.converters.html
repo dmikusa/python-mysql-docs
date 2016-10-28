@@ -1,0 +1,112 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module MySQLdb.converters</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="MySQLdb.html"><font color="#ffffff">MySQLdb</font></a>.converters</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="MySQLdb/converters.py">MySQLdb/converters.py</a></font></td></tr></table>
+    <p><tt>MySQLdb&nbsp;type&nbsp;conversion&nbsp;module<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;handles&nbsp;all&nbsp;the&nbsp;type&nbsp;conversions&nbsp;for&nbsp;MySQL.&nbsp;If&nbsp;the&nbsp;default<br>
+type&nbsp;conversions&nbsp;aren't&nbsp;what&nbsp;you&nbsp;need,&nbsp;you&nbsp;can&nbsp;make&nbsp;your&nbsp;own.&nbsp;The<br>
+dictionary&nbsp;conversions&nbsp;maps&nbsp;some&nbsp;kind&nbsp;of&nbsp;type&nbsp;to&nbsp;a&nbsp;conversion&nbsp;function<br>
+which&nbsp;returns&nbsp;the&nbsp;corresponding&nbsp;value:<br>
+&nbsp;<br>
+Key:&nbsp;FIELD_TYPE.*&nbsp;(from&nbsp;MySQLdb.constants)<br>
+&nbsp;<br>
+Conversion&nbsp;function:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;string<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns:&nbsp;Python&nbsp;object<br>
+&nbsp;<br>
+Key:&nbsp;Python&nbsp;type&nbsp;object&nbsp;(from&nbsp;types)&nbsp;or&nbsp;class<br>
+&nbsp;<br>
+Conversion&nbsp;function:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Arguments:&nbsp;Python&nbsp;object&nbsp;of&nbsp;indicated&nbsp;type&nbsp;or&nbsp;class&nbsp;AND&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversion&nbsp;dictionary<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Returns:&nbsp;SQL&nbsp;literal&nbsp;value<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Notes:&nbsp;Most&nbsp;conversion&nbsp;functions&nbsp;can&nbsp;ignore&nbsp;the&nbsp;dictionary,&nbsp;but<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it&nbsp;is&nbsp;a&nbsp;required&nbsp;parameter.&nbsp;It&nbsp;is&nbsp;necessary&nbsp;for&nbsp;converting<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;things&nbsp;like&nbsp;sequences&nbsp;and&nbsp;instances.<br>
+&nbsp;<br>
+Don't&nbsp;modify&nbsp;conversions&nbsp;if&nbsp;you&nbsp;can&nbsp;avoid&nbsp;it.&nbsp;Instead,&nbsp;make&nbsp;copies<br>
+(with&nbsp;the&nbsp;copy()&nbsp;method),&nbsp;modify&nbsp;the&nbsp;copies,&nbsp;and&nbsp;then&nbsp;pass&nbsp;them&nbsp;to<br>
+MySQL.connect().</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="MySQLdb.constants.FIELD_TYPE.html">MySQLdb.constants.FIELD_TYPE</a><br>
+</td><td width="25%" valign=top><a href="MySQLdb.constants.FLAG.html">MySQLdb.constants.FLAG</a><br>
+</td><td width="25%" valign=top><a href="array.html">array</a><br>
+</td><td width="25%" valign=top><a href="types.html">types</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Bool2Str"><strong>Bool2Str</strong></a>(s, d)</dt></dl>
+ <dl><dt><a name="-Float2Str"><strong>Float2Str</strong></a>(o, d)</dt></dl>
+ <dl><dt><a name="-Instance2Str"><strong>Instance2Str</strong></a>(o, d)</dt><dd><tt>Convert&nbsp;an&nbsp;Instance&nbsp;to&nbsp;a&nbsp;string&nbsp;representation.&nbsp;&nbsp;If&nbsp;the&nbsp;__str__()<br>
+method&nbsp;produces&nbsp;acceptable&nbsp;output,&nbsp;then&nbsp;you&nbsp;don't&nbsp;need&nbsp;to&nbsp;add&nbsp;the<br>
+class&nbsp;to&nbsp;conversions;&nbsp;it&nbsp;will&nbsp;be&nbsp;handled&nbsp;by&nbsp;the&nbsp;default<br>
+converter.&nbsp;If&nbsp;the&nbsp;exact&nbsp;class&nbsp;is&nbsp;not&nbsp;found&nbsp;in&nbsp;d,&nbsp;it&nbsp;will&nbsp;use&nbsp;the<br>
+first&nbsp;class&nbsp;it&nbsp;can&nbsp;find&nbsp;for&nbsp;which&nbsp;o&nbsp;is&nbsp;an&nbsp;instance.</tt></dd></dl>
+ <dl><dt><a name="-Long2Int"><strong>Long2Int</strong></a> = Thing2Str(s, d)</dt><dd><tt>Convert&nbsp;something&nbsp;into&nbsp;a&nbsp;string&nbsp;via&nbsp;str().</tt></dd></dl>
+ <dl><dt><a name="-None2NULL"><strong>None2NULL</strong></a>(o, d)</dt><dd><tt>Convert&nbsp;None&nbsp;to&nbsp;NULL.</tt></dd></dl>
+ <dl><dt><a name="-Set2Str"><strong>Set2Str</strong></a>(s, d)</dt></dl>
+ <dl><dt><a name="-Str2Set"><strong>Str2Set</strong></a>(s)</dt></dl>
+ <dl><dt><a name="-Thing2Literal"><strong>Thing2Literal</strong></a>(o, d)</dt><dd><tt>Convert&nbsp;something&nbsp;into&nbsp;a&nbsp;SQL&nbsp;string&nbsp;literal.&nbsp;&nbsp;If&nbsp;using<br>
+MySQL-3.23&nbsp;or&nbsp;newer,&nbsp;<a href="#-string_literal">string_literal</a>()&nbsp;is&nbsp;a&nbsp;method&nbsp;of&nbsp;the<br>
+_mysql.MYSQL&nbsp;object,&nbsp;and&nbsp;this&nbsp;function&nbsp;will&nbsp;be&nbsp;overridden&nbsp;with<br>
+that&nbsp;method&nbsp;when&nbsp;the&nbsp;connection&nbsp;is&nbsp;created.</tt></dd></dl>
+ <dl><dt><a name="-Thing2Str"><strong>Thing2Str</strong></a>(s, d)</dt><dd><tt>Convert&nbsp;something&nbsp;into&nbsp;a&nbsp;string&nbsp;via&nbsp;str().</tt></dd></dl>
+ <dl><dt><a name="-Unicode2Str"><strong>Unicode2Str</strong></a>(s, d)</dt><dd><tt>Convert&nbsp;a&nbsp;unicode&nbsp;object&nbsp;to&nbsp;a&nbsp;string&nbsp;using&nbsp;the&nbsp;default&nbsp;encoding.<br>
+This&nbsp;is&nbsp;only&nbsp;used&nbsp;as&nbsp;a&nbsp;placeholder&nbsp;for&nbsp;the&nbsp;real&nbsp;function,&nbsp;which<br>
+is&nbsp;connection-dependent.</tt></dd></dl>
+ <dl><dt><a name="-array2Str"><strong>array2Str</strong></a>(o, d)</dt></dl>
+ <dl><dt><a name="-char_array"><strong>char_array</strong></a>(s)</dt></dl>
+ <dl><dt><a name="-escape"><strong>escape</strong></a>(...)</dt><dd><tt><a href="#-escape">escape</a>(obj,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in&nbsp;object&nbsp;obj<br>
+using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;SQL&nbsp;literal&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-escape_dict"><strong>escape_dict</strong></a>(...)</dt><dd><tt><a href="#-escape_sequence">escape_sequence</a>(d,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in<br>
+dictionary&nbsp;d&nbsp;using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;escaped&nbsp;items.</tt></dd></dl>
+ <dl><dt><a name="-escape_sequence"><strong>escape_sequence</strong></a>(...)</dt><dd><tt><a href="#-escape_sequence">escape_sequence</a>(seq,&nbsp;dict)&nbsp;--&nbsp;escape&nbsp;any&nbsp;special&nbsp;characters&nbsp;in&nbsp;sequence<br>
+seq&nbsp;using&nbsp;mapping&nbsp;dict&nbsp;to&nbsp;provide&nbsp;quoting&nbsp;functions&nbsp;for&nbsp;each&nbsp;type.<br>
+Returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;escaped&nbsp;items.</tt></dd></dl>
+ <dl><dt><a name="-localtime"><strong>localtime</strong></a>(...)</dt><dd><tt><a href="#-localtime">localtime</a>([seconds])&nbsp;-&gt;&nbsp;(tm_year,tm_mon,tm_day,tm_hour,tm_min,tm_sec,tm_wday,tm_yday,tm_isdst)<br>
+&nbsp;<br>
+Convert&nbsp;seconds&nbsp;since&nbsp;the&nbsp;Epoch&nbsp;to&nbsp;a&nbsp;time&nbsp;tuple&nbsp;expressing&nbsp;local&nbsp;time.<br>
+When&nbsp;'seconds'&nbsp;is&nbsp;not&nbsp;passed&nbsp;in,&nbsp;convert&nbsp;the&nbsp;current&nbsp;time&nbsp;instead.</tt></dd></dl>
+ <dl><dt><a name="-string_literal"><strong>string_literal</strong></a>(...)</dt><dd><tt><a href="#-string_literal">string_literal</a>(obj)&nbsp;--&nbsp;converts&nbsp;object&nbsp;obj&nbsp;into&nbsp;a&nbsp;SQL&nbsp;string&nbsp;literal.<br>
+This&nbsp;means,&nbsp;any&nbsp;special&nbsp;SQL&nbsp;characters&nbsp;are&nbsp;escaped,&nbsp;and&nbsp;it&nbsp;is&nbsp;enclosed<br>
+within&nbsp;single&nbsp;quotes.&nbsp;In&nbsp;other&nbsp;words,&nbsp;it&nbsp;performs:<br>
+&nbsp;<br>
+"'%s'"&nbsp;%&nbsp;escape_string(str(obj))<br>
+&nbsp;<br>
+Use&nbsp;connection.<a href="#-string_literal">string_literal</a>(obj),&nbsp;if&nbsp;you&nbsp;use&nbsp;it&nbsp;at&nbsp;all.<br>
+_mysql.<a href="#-string_literal">string_literal</a>(obj)&nbsp;cannot&nbsp;handle&nbsp;character&nbsp;sets.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>NULL</strong> = 'NULL'<br>
+<strong>conversions</strong> = {0: &lt;class 'decimal.Decimal'&gt;, 1: &lt;type 'int'&gt;, 2: &lt;type 'int'&gt;, 3: &lt;type 'long'&gt;, 4: &lt;type 'float'&gt;, 5: &lt;type 'float'&gt;, 7: &lt;function mysql_timestamp_converter&gt;, 8: &lt;type 'long'&gt;, 9: &lt;type 'int'&gt;, 10: &lt;function Date_or_None&gt;, ...}</td></tr></table>
+</body></html>

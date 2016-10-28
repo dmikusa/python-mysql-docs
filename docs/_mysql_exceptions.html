@@ -1,0 +1,347 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module _mysql_exceptions</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>_mysql_exceptions</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/lib/python2.4/site-packages/_mysql_exceptions.py">/usr/lib/python2.4/site-packages/_mysql_exceptions.py</a></font></td></tr></table>
+    <p><tt>_mysql_exceptions:&nbsp;Exception&nbsp;classes&nbsp;for&nbsp;_mysql&nbsp;and&nbsp;MySQLdb.<br>
+&nbsp;<br>
+These&nbsp;classes&nbsp;are&nbsp;dictated&nbsp;by&nbsp;the&nbsp;DB&nbsp;API&nbsp;v2.0:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.python.org/topics/database/DatabaseAPI-2.0.html">http://www.python.org/topics/database/DatabaseAPI-2.0.html</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#StandardError">exceptions.StandardError</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#MySQLError">MySQLError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#Error">Error</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#DataError">DataError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#IntegrityError">IntegrityError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#InternalError">InternalError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#NotSupportedError">NotSupportedError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#OperationalError">OperationalError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#ProgrammingError">ProgrammingError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#InterfaceError">InterfaceError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#Warning">Warning</a>(<a href="exceptions.html#Warning">exceptions.Warning</a>, <a href="_mysql_exceptions.html#MySQLError">MySQLError</a>)
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Warning">exceptions.Warning</a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="_mysql_exceptions.html#Warning">Warning</a>(<a href="exceptions.html#Warning">exceptions.Warning</a>, <a href="_mysql_exceptions.html#MySQLError">MySQLError</a>)
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DataError">class <strong>DataError</strong></a>(<a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#DataError">DataError</a></dd>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="DataError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DataError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DataError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DatabaseError">class <strong>DatabaseError</strong></a>(<a href="_mysql_exceptions.html#Error">Error</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="DatabaseError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DatabaseError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DatabaseError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Error">class <strong>Error</strong></a>(<a href="_mysql_exceptions.html#MySQLError">MySQLError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;<a href="#Warning">Warning</a>).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="Error-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Error-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IntegrityError">class <strong>IntegrityError</strong></a>(<a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#IntegrityError">IntegrityError</a></dd>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="IntegrityError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IntegrityError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IntegrityError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InterfaceError">class <strong>InterfaceError</strong></a>(<a href="_mysql_exceptions.html#Error">Error</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#InterfaceError">InterfaceError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="InterfaceError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InterfaceError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InterfaceError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InternalError">class <strong>InternalError</strong></a>(<a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#InternalError">InternalError</a></dd>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="InternalError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InternalError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="InternalError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MySQLError">class <strong>MySQLError</strong></a>(<a href="exceptions.html#StandardError">exceptions.StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;related&nbsp;to&nbsp;operation&nbsp;with&nbsp;MySQL.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="MySQLError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="MySQLError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="MySQLError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NotSupportedError">class <strong>NotSupportedError</strong></a>(<a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.rollback()&nbsp;on&nbsp;a&nbsp;connection&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#NotSupportedError">NotSupportedError</a></dd>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="NotSupportedError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NotSupportedError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NotSupportedError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OperationalError">class <strong>OperationalError</strong></a>(<a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#OperationalError">OperationalError</a></dd>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="OperationalError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OperationalError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OperationalError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ProgrammingError">class <strong>ProgrammingError</strong></a>(<a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#ProgrammingError">ProgrammingError</a></dd>
+<dd><a href="_mysql_exceptions.html#DatabaseError">DatabaseError</a></dd>
+<dd><a href="_mysql_exceptions.html#Error">Error</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="ProgrammingError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProgrammingError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ProgrammingError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Warning">class <strong>Warning</strong></a>(<a href="exceptions.html#Warning">exceptions.Warning</a>, <a href="_mysql_exceptions.html#MySQLError">MySQLError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="_mysql_exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Warning">exceptions.Warning</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="_mysql_exceptions.html#MySQLError">MySQLError</a></dd>
+<dd><a href="exceptions.html#StandardError">exceptions.StandardError</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="Warning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Warning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Warning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

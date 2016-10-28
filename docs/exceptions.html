@@ -1,0 +1,1202 @@
+
+<!doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: built-in module exceptions</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>exceptions</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br>(built-in)<br><a href="http://www.python.org/doc/current/lib/module-exceptions.html">Module Docs</a></font></td></tr></table>
+    <p><tt>Python's&nbsp;standard&nbsp;exception&nbsp;class&nbsp;hierarchy.<br>
+&nbsp;<br>
+Before&nbsp;Python&nbsp;1.5,&nbsp;the&nbsp;standard&nbsp;exceptions&nbsp;were&nbsp;all&nbsp;simple&nbsp;string&nbsp;objects.<br>
+In&nbsp;Python&nbsp;1.5,&nbsp;the&nbsp;standard&nbsp;exceptions&nbsp;were&nbsp;converted&nbsp;to&nbsp;classes&nbsp;organized<br>
+into&nbsp;a&nbsp;relatively&nbsp;flat&nbsp;hierarchy.&nbsp;&nbsp;String-based&nbsp;standard&nbsp;exceptions&nbsp;were<br>
+optional,&nbsp;or&nbsp;used&nbsp;as&nbsp;a&nbsp;fallback&nbsp;if&nbsp;some&nbsp;problem&nbsp;occurred&nbsp;while&nbsp;importing<br>
+the&nbsp;exception&nbsp;module.&nbsp;&nbsp;With&nbsp;Python&nbsp;1.6,&nbsp;optional&nbsp;string-based&nbsp;standard<br>
+exceptions&nbsp;were&nbsp;removed&nbsp;(along&nbsp;with&nbsp;the&nbsp;-X&nbsp;command&nbsp;line&nbsp;flag).<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;exceptions&nbsp;were&nbsp;implemented&nbsp;in&nbsp;such&nbsp;a&nbsp;way&nbsp;as&nbsp;to&nbsp;be&nbsp;almost<br>
+completely&nbsp;backward&nbsp;compatible.&nbsp;&nbsp;Some&nbsp;tricky&nbsp;uses&nbsp;of&nbsp;<a href="#IOError">IOError</a>&nbsp;could<br>
+potentially&nbsp;have&nbsp;broken,&nbsp;but&nbsp;by&nbsp;Python&nbsp;1.6,&nbsp;all&nbsp;of&nbsp;these&nbsp;should&nbsp;have<br>
+been&nbsp;fixed.&nbsp;&nbsp;As&nbsp;of&nbsp;Python&nbsp;1.6,&nbsp;the&nbsp;class-based&nbsp;standard&nbsp;exceptions&nbsp;are<br>
+now&nbsp;implemented&nbsp;in&nbsp;C,&nbsp;and&nbsp;are&nbsp;guaranteed&nbsp;to&nbsp;exist&nbsp;in&nbsp;the&nbsp;Python<br>
+interpreter.<br>
+&nbsp;<br>
+Here&nbsp;is&nbsp;a&nbsp;rundown&nbsp;of&nbsp;the&nbsp;class&nbsp;hierarchy.&nbsp;&nbsp;The&nbsp;classes&nbsp;found&nbsp;here&nbsp;are<br>
+inserted&nbsp;into&nbsp;both&nbsp;the&nbsp;exceptions&nbsp;module&nbsp;and&nbsp;the&nbsp;`built-in'&nbsp;module.&nbsp;&nbsp;It&nbsp;is<br>
+recommended&nbsp;that&nbsp;user&nbsp;defined&nbsp;class&nbsp;based&nbsp;exceptions&nbsp;be&nbsp;derived&nbsp;from&nbsp;the<br>
+`<a href="#Exception">Exception</a>'&nbsp;class,&nbsp;although&nbsp;this&nbsp;is&nbsp;currently&nbsp;not&nbsp;enforced.<br>
+&nbsp;<br>
+<a href="#Exception">Exception</a><br>
+&nbsp;|<br>
+&nbsp;+--&nbsp;<a href="#SystemExit">SystemExit</a><br>
+&nbsp;+--&nbsp;<a href="#StopIteration">StopIteration</a><br>
+&nbsp;+--&nbsp;<a href="#StandardError">StandardError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#KeyboardInterrupt">KeyboardInterrupt</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#ImportError">ImportError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#EnvironmentError">EnvironmentError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#IOError">IOError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#OSError">OSError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;WindowsError<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;VMSError<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#EOFError">EOFError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#RuntimeError">RuntimeError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#NotImplementedError">NotImplementedError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#NameError">NameError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#UnboundLocalError">UnboundLocalError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#AttributeError">AttributeError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#SyntaxError">SyntaxError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#IndentationError">IndentationError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#TabError">TabError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#TypeError">TypeError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#AssertionError">AssertionError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#LookupError">LookupError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#IndexError">IndexError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#KeyError">KeyError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#ArithmeticError">ArithmeticError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#OverflowError">OverflowError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#ZeroDivisionError">ZeroDivisionError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#FloatingPointError">FloatingPointError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#ValueError">ValueError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#UnicodeError">UnicodeError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#UnicodeEncodeError">UnicodeEncodeError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#UnicodeDecodeError">UnicodeDecodeError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#UnicodeTranslateError">UnicodeTranslateError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#ReferenceError">ReferenceError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#SystemError">SystemError</a><br>
+&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#MemoryError">MemoryError</a><br>
+&nbsp;|<br>
+&nbsp;+---<a href="#Warning">Warning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#UserWarning">UserWarning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#DeprecationWarning">DeprecationWarning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#PendingDeprecationWarning">PendingDeprecationWarning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#SyntaxWarning">SyntaxWarning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#OverflowWarning">OverflowWarning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#RuntimeWarning">RuntimeWarning</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;<a href="#FutureWarning">FutureWarning</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">Exception</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#StandardError">StandardError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#ArithmeticError">ArithmeticError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#FloatingPointError">FloatingPointError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#OverflowError">OverflowError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#ZeroDivisionError">ZeroDivisionError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#AssertionError">AssertionError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#AttributeError">AttributeError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#EOFError">EOFError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#EnvironmentError">EnvironmentError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#IOError">IOError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#OSError">OSError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#ImportError">ImportError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#KeyboardInterrupt">KeyboardInterrupt</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#LookupError">LookupError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#IndexError">IndexError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#KeyError">KeyError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#MemoryError">MemoryError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#NameError">NameError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#UnboundLocalError">UnboundLocalError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#ReferenceError">ReferenceError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#RuntimeError">RuntimeError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#NotImplementedError">NotImplementedError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#SyntaxError">SyntaxError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#IndentationError">IndentationError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#TabError">TabError</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#SystemError">SystemError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#TypeError">TypeError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#ValueError">ValueError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#UnicodeError">UnicodeError</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#UnicodeDecodeError">UnicodeDecodeError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#UnicodeEncodeError">UnicodeEncodeError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#UnicodeTranslateError">UnicodeTranslateError</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#StopIteration">StopIteration</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#SystemExit">SystemExit</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#Warning">Warning</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="exceptions.html#DeprecationWarning">DeprecationWarning</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#FutureWarning">FutureWarning</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#OverflowWarning">OverflowWarning</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#PendingDeprecationWarning">PendingDeprecationWarning</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#RuntimeWarning">RuntimeWarning</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#SyntaxWarning">SyntaxWarning</a>
+</font></dt><dt><font face="helvetica, arial"><a href="exceptions.html#UserWarning">UserWarning</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ArithmeticError">class <strong>ArithmeticError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;arithmetic&nbsp;errors.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#ArithmeticError">ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="ArithmeticError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ArithmeticError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ArithmeticError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AssertionError">class <strong>AssertionError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Assertion&nbsp;failed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#AssertionError">AssertionError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="AssertionError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="AssertionError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="AssertionError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AttributeError">class <strong>AttributeError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Attribute&nbsp;not&nbsp;found.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#AttributeError">AttributeError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="AttributeError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="AttributeError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="AttributeError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DeprecationWarning">class <strong>DeprecationWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;about&nbsp;deprecated&nbsp;features.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#DeprecationWarning">DeprecationWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="DeprecationWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DeprecationWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DeprecationWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EOFError">class <strong>EOFError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Read&nbsp;beyond&nbsp;end&nbsp;of&nbsp;file.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#EOFError">EOFError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="EOFError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="EOFError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="EOFError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EnvironmentError">class <strong>EnvironmentError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;I/O&nbsp;related&nbsp;errors.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#EnvironmentError">EnvironmentError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="EnvironmentError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="EnvironmentError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="EnvironmentError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Exception">class <strong>Exception</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Common&nbsp;base&nbsp;class&nbsp;for&nbsp;all&nbsp;exceptions.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Exception-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Exception-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Exception-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FloatingPointError">class <strong>FloatingPointError</strong></a>(<a href="exceptions.html#ArithmeticError">ArithmeticError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Floating&nbsp;point&nbsp;operation&nbsp;failed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#FloatingPointError">FloatingPointError</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="FloatingPointError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FloatingPointError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FloatingPointError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FutureWarning">class <strong>FutureWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;about&nbsp;constructs&nbsp;that&nbsp;will&nbsp;change&nbsp;semantically&nbsp;in&nbsp;the&nbsp;future.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#FutureWarning">FutureWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="FutureWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FutureWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="FutureWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IOError">class <strong>IOError</strong></a>(<a href="exceptions.html#EnvironmentError">EnvironmentError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>I/O&nbsp;operation&nbsp;failed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#IOError">IOError</a></dd>
+<dd><a href="exceptions.html#EnvironmentError">EnvironmentError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#EnvironmentError">EnvironmentError</a>:<br>
+<dl><dt><a name="IOError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IOError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="IOError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ImportError">class <strong>ImportError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Import&nbsp;can't&nbsp;find&nbsp;module,&nbsp;or&nbsp;can't&nbsp;find&nbsp;name&nbsp;in&nbsp;module.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#ImportError">ImportError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="ImportError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ImportError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ImportError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IndentationError">class <strong>IndentationError</strong></a>(<a href="exceptions.html#SyntaxError">SyntaxError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Improper&nbsp;indentation.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#IndentationError">IndentationError</a></dd>
+<dd><a href="exceptions.html#SyntaxError">SyntaxError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#SyntaxError">SyntaxError</a>:<br>
+<dl><dt><a name="IndentationError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IndentationError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#SyntaxError">SyntaxError</a>:<br>
+<dl><dt><strong>filename</strong> = None</dl>
+
+<dl><dt><strong>lineno</strong> = None</dl>
+
+<dl><dt><strong>msg</strong> = ''</dl>
+
+<dl><dt><strong>offset</strong> = None</dl>
+
+<dl><dt><strong>print_file_and_line</strong> = None</dl>
+
+<dl><dt><strong>text</strong> = None</dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="IndentationError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="IndexError">class <strong>IndexError</strong></a>(<a href="exceptions.html#LookupError">LookupError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Sequence&nbsp;index&nbsp;out&nbsp;of&nbsp;range.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#IndexError">IndexError</a></dd>
+<dd><a href="exceptions.html#LookupError">LookupError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="IndexError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IndexError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="IndexError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="KeyError">class <strong>KeyError</strong></a>(<a href="exceptions.html#LookupError">LookupError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Mapping&nbsp;key&nbsp;not&nbsp;found.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#KeyError">KeyError</a></dd>
+<dd><a href="exceptions.html#LookupError">LookupError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="KeyError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="KeyError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="KeyError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="KeyboardInterrupt">class <strong>KeyboardInterrupt</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Program&nbsp;interrupted&nbsp;by&nbsp;user.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#KeyboardInterrupt">KeyboardInterrupt</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="KeyboardInterrupt-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="KeyboardInterrupt-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="KeyboardInterrupt-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LookupError">class <strong>LookupError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;lookup&nbsp;errors.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#LookupError">LookupError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="LookupError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LookupError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="LookupError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MemoryError">class <strong>MemoryError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Out&nbsp;of&nbsp;memory.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#MemoryError">MemoryError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="MemoryError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="MemoryError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="MemoryError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NameError">class <strong>NameError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Name&nbsp;not&nbsp;found&nbsp;globally.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#NameError">NameError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="NameError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NameError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NameError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="NotImplementedError">class <strong>NotImplementedError</strong></a>(<a href="exceptions.html#RuntimeError">RuntimeError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Method&nbsp;or&nbsp;function&nbsp;hasn't&nbsp;been&nbsp;implemented&nbsp;yet.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#NotImplementedError">NotImplementedError</a></dd>
+<dd><a href="exceptions.html#RuntimeError">RuntimeError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="NotImplementedError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NotImplementedError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="NotImplementedError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OSError">class <strong>OSError</strong></a>(<a href="exceptions.html#EnvironmentError">EnvironmentError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>OS&nbsp;system&nbsp;call&nbsp;failed.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#OSError">OSError</a></dd>
+<dd><a href="exceptions.html#EnvironmentError">EnvironmentError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#EnvironmentError">EnvironmentError</a>:<br>
+<dl><dt><a name="OSError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OSError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="OSError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OverflowError">class <strong>OverflowError</strong></a>(<a href="exceptions.html#ArithmeticError">ArithmeticError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Result&nbsp;too&nbsp;large&nbsp;to&nbsp;be&nbsp;represented.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#OverflowError">OverflowError</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="OverflowError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OverflowError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OverflowError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OverflowWarning">class <strong>OverflowWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;about&nbsp;numeric&nbsp;overflow.&nbsp;&nbsp;Won't&nbsp;exist&nbsp;in&nbsp;Python&nbsp;2.5.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#OverflowWarning">OverflowWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="OverflowWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OverflowWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="OverflowWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PendingDeprecationWarning">class <strong>PendingDeprecationWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;about&nbsp;features&nbsp;which&nbsp;will&nbsp;be&nbsp;deprecated&nbsp;in&nbsp;the&nbsp;future.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#PendingDeprecationWarning">PendingDeprecationWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="PendingDeprecationWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PendingDeprecationWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="PendingDeprecationWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ReferenceError">class <strong>ReferenceError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Weak&nbsp;ref&nbsp;proxy&nbsp;used&nbsp;after&nbsp;referent&nbsp;went&nbsp;away.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#ReferenceError">ReferenceError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="ReferenceError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ReferenceError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ReferenceError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RuntimeError">class <strong>RuntimeError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unspecified&nbsp;run-time&nbsp;error.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#RuntimeError">RuntimeError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="RuntimeError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="RuntimeError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="RuntimeError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RuntimeWarning">class <strong>RuntimeWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;about&nbsp;dubious&nbsp;runtime&nbsp;behavior.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#RuntimeWarning">RuntimeWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="RuntimeWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="RuntimeWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="RuntimeWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StandardError">class <strong>StandardError</strong></a>(<a href="exceptions.html#Exception">Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;all&nbsp;standard&nbsp;Python&nbsp;exceptions.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="StandardError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="StandardError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="StandardError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StopIteration">class <strong>StopIteration</strong></a>(<a href="exceptions.html#Exception">Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Signal&nbsp;the&nbsp;end&nbsp;from&nbsp;iterator.next().<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="StopIteration-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="StopIteration-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="StopIteration-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SyntaxError">class <strong>SyntaxError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Invalid&nbsp;syntax.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#SyntaxError">SyntaxError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SyntaxError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SyntaxError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>filename</strong> = None</dl>
+
+<dl><dt><strong>lineno</strong> = None</dl>
+
+<dl><dt><strong>msg</strong> = ''</dl>
+
+<dl><dt><strong>offset</strong> = None</dl>
+
+<dl><dt><strong>print_file_and_line</strong> = None</dl>
+
+<dl><dt><strong>text</strong> = None</dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="SyntaxError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SyntaxWarning">class <strong>SyntaxWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;about&nbsp;dubious&nbsp;syntax.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#SyntaxWarning">SyntaxWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="SyntaxWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SyntaxWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SyntaxWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SystemError">class <strong>SystemError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Internal&nbsp;error&nbsp;in&nbsp;the&nbsp;Python&nbsp;interpreter.<br>
+&nbsp;<br>
+Please&nbsp;report&nbsp;this&nbsp;to&nbsp;the&nbsp;Python&nbsp;maintainer,&nbsp;along&nbsp;with&nbsp;the&nbsp;traceback,<br>
+the&nbsp;Python&nbsp;version,&nbsp;and&nbsp;the&nbsp;hardware/OS&nbsp;platform&nbsp;and&nbsp;version.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#SystemError">SystemError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="SystemError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SystemError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SystemError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SystemExit">class <strong>SystemExit</strong></a>(<a href="exceptions.html#Exception">Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Request&nbsp;to&nbsp;exit&nbsp;from&nbsp;the&nbsp;interpreter.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SystemExit-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="SystemExit-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="SystemExit-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TabError">class <strong>TabError</strong></a>(<a href="exceptions.html#IndentationError">IndentationError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Improper&nbsp;mixture&nbsp;of&nbsp;spaces&nbsp;and&nbsp;tabs.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#TabError">TabError</a></dd>
+<dd><a href="exceptions.html#IndentationError">IndentationError</a></dd>
+<dd><a href="exceptions.html#SyntaxError">SyntaxError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#SyntaxError">SyntaxError</a>:<br>
+<dl><dt><a name="TabError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TabError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#SyntaxError">SyntaxError</a>:<br>
+<dl><dt><strong>filename</strong> = None</dl>
+
+<dl><dt><strong>lineno</strong> = None</dl>
+
+<dl><dt><strong>msg</strong> = ''</dl>
+
+<dl><dt><strong>offset</strong> = None</dl>
+
+<dl><dt><strong>print_file_and_line</strong> = None</dl>
+
+<dl><dt><strong>text</strong> = None</dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="TabError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TypeError">class <strong>TypeError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Inappropriate&nbsp;argument&nbsp;type.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#TypeError">TypeError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="TypeError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TypeError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="TypeError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnboundLocalError">class <strong>UnboundLocalError</strong></a>(<a href="exceptions.html#NameError">NameError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Local&nbsp;name&nbsp;referenced&nbsp;but&nbsp;not&nbsp;bound&nbsp;to&nbsp;a&nbsp;value.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#UnboundLocalError">UnboundLocalError</a></dd>
+<dd><a href="exceptions.html#NameError">NameError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="UnboundLocalError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnboundLocalError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnboundLocalError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnicodeDecodeError">class <strong>UnicodeDecodeError</strong></a>(<a href="exceptions.html#UnicodeError">UnicodeError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unicode&nbsp;decoding&nbsp;error.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#UnicodeDecodeError">UnicodeDecodeError</a></dd>
+<dd><a href="exceptions.html#UnicodeError">UnicodeError</a></dd>
+<dd><a href="exceptions.html#ValueError">ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UnicodeDecodeError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnicodeDecodeError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="UnicodeDecodeError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnicodeEncodeError">class <strong>UnicodeEncodeError</strong></a>(<a href="exceptions.html#UnicodeError">UnicodeError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unicode&nbsp;encoding&nbsp;error.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#UnicodeEncodeError">UnicodeEncodeError</a></dd>
+<dd><a href="exceptions.html#UnicodeError">UnicodeError</a></dd>
+<dd><a href="exceptions.html#ValueError">ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UnicodeEncodeError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnicodeEncodeError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="UnicodeEncodeError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnicodeError">class <strong>UnicodeError</strong></a>(<a href="exceptions.html#ValueError">ValueError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unicode&nbsp;related&nbsp;error.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#UnicodeError">UnicodeError</a></dd>
+<dd><a href="exceptions.html#ValueError">ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="UnicodeError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnicodeError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnicodeError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UnicodeTranslateError">class <strong>UnicodeTranslateError</strong></a>(<a href="exceptions.html#UnicodeError">UnicodeError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Unicode&nbsp;translation&nbsp;error.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#UnicodeTranslateError">UnicodeTranslateError</a></dd>
+<dd><a href="exceptions.html#UnicodeError">UnicodeError</a></dd>
+<dd><a href="exceptions.html#ValueError">ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UnicodeTranslateError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UnicodeTranslateError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="UnicodeTranslateError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UserWarning">class <strong>UserWarning</strong></a>(<a href="exceptions.html#Warning">Warning</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warnings&nbsp;generated&nbsp;by&nbsp;user&nbsp;code.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#UserWarning">UserWarning</a></dd>
+<dd><a href="exceptions.html#Warning">Warning</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="UserWarning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UserWarning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="UserWarning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ValueError">class <strong>ValueError</strong></a>(<a href="exceptions.html#StandardError">StandardError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Inappropriate&nbsp;argument&nbsp;value&nbsp;(of&nbsp;correct&nbsp;type).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#ValueError">ValueError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="ValueError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ValueError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ValueError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Warning">class <strong>Warning</strong></a>(<a href="exceptions.html#Exception">Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Base&nbsp;class&nbsp;for&nbsp;warning&nbsp;categories.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="Warning-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Warning-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Warning-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ZeroDivisionError">class <strong>ZeroDivisionError</strong></a>(<a href="exceptions.html#ArithmeticError">ArithmeticError</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Second&nbsp;argument&nbsp;to&nbsp;a&nbsp;division&nbsp;or&nbsp;modulo&nbsp;operation&nbsp;was&nbsp;zero.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="exceptions.html#ZeroDivisionError">ZeroDivisionError</a></dd>
+<dd><a href="exceptions.html#ArithmeticError">ArithmeticError</a></dd>
+<dd><a href="exceptions.html#StandardError">StandardError</a></dd>
+<dd><a href="exceptions.html#Exception">Exception</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">Exception</a>:<br>
+<dl><dt><a name="ZeroDivisionError-__getitem__"><strong>__getitem__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ZeroDivisionError-__init__"><strong>__init__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ZeroDivisionError-__str__"><strong>__str__</strong></a>(...)</dt></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

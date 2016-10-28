@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Getting a Cursor - Python MySQL Documentation</title>
+  <meta name="author" content="Daniel Mikusa" />
+  <meta name="copyright" content="2006" />
+  <meta name="keywords" content="python mysql documentation introduction" />
+  <meta name="description" content="An introduction to MySQL in Python" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/css/mysql-docs.css" />
+  <link href="/css/syntaxhighlighter/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="/css/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<h1>Getting a Cursor in MySQL Python</h1>
+	<p>In order to put our new connnection to good use we need to create a cursor
+	object.  The cursor object is an abstraction specified in the Python DB-API 2.0.
+	It gives us the ability to have multiple seperate working environments through
+	the same connection to the database.  You can create a cursor by executing the
+	'cursor' function of your database object.</p>
+	
+	<pre class="brush: python">
+		cur = db.cursor()</pre>
+	
+	<p>By default the cursor is created using the default cursor class.  If you like
+	you can specify a different cursor class by setting the 'cursorclass' parameter
+	to the cursor class you would like to use.  There are several different cursor
+	classes that give you different functionality when executing queries.</p>
+	
+	<p>An example of this is using the DictCursor to have your results returned to
+	you as Python dictionaries instead of the default which is a Python list.  For
+	more information on the available cursor classes check the reference section.</p>
+	
+	<div style="text-align: center;">
+	<table width="100%">
+		<tr>
+			<td><a href="connection.html"><--</a></td>
+			<td><a href="index.html">Home</a></td>
+			<td><a href="query.html">--></a></td>
+		</tr>
+	</table>
+	</div>
+    <!-- Syntax Highlighter -->
+    <script type="text/javascript" src="/js/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/js/syntaxhighlighter/shBrushPython.js"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <!-- end Syntax Highlighter -->
+    <!-- Google Analytics -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        _uacct = "UA-776027-1";
+        urchinTracker();
+    </script>
+    <!-- end Google Analytics -->
+</body>
+</html>

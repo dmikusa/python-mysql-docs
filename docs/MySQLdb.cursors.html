@@ -1,0 +1,970 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module MySQLdb.cursors</title></head><body bgcolor="#f0f0f8">
+
+<table summary="heading" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="MySQLdb.html"><font color="#ffffff">MySQLdb</font></a>.cursors</strong></big></big></font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="">index</a><br><a href="MySQLdb/cursors.py">MySQLdb/cursors.py</a></font></td></tr></tbody></table>
+    <p><tt>MySQLdb&nbsp;Cursors<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;implements&nbsp;Cursors&nbsp;of&nbsp;various&nbsp;types&nbsp;for&nbsp;MySQLdb.&nbsp;By<br>
+default,&nbsp;MySQLdb&nbsp;uses&nbsp;the&nbsp;<a href="#Cursor">Cursor</a>&nbsp;class.</tt></p>
+<p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#fffff0" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table summary="list" width="100%"><tbody><tr><td valign="top" width="25%"><a href="re.html">re</a><br>
+</td><td valign="top" width="25%"></td><td valign="top" width="25%"></td><td valign="top" width="25%"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>
+</font></dt><dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#CursorOldDictRowsMixIn">CursorOldDictRowsMixIn</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#Cursor">Cursor</a>(<a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#DictCursor">DictCursor</a>(<a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a>
+</font></dt><dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#SSCursor">SSCursor</a>(<a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)
+</font></dt><dt><font face="helvetica, arial"><a href="MySQLdb.cursors.html#SSDictCursor">SSDictCursor</a>(<a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="BaseCursor">class <strong>BaseCursor</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>A&nbsp;base&nbsp;for&nbsp;<a href="#Cursor">Cursor</a>&nbsp;classes.&nbsp;Useful&nbsp;attributes:<br>
+&nbsp;<br>
+description<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;tuple&nbsp;of&nbsp;DB&nbsp;API&nbsp;7-tuples&nbsp;describing&nbsp;the&nbsp;columns&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;last&nbsp;executed&nbsp;query;&nbsp;see&nbsp;<a href="http://www.python.org/peps/pep-0249.html">PEP-249</a>&nbsp;for&nbsp;details.<br>
+&nbsp;<br>
+description_flags<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Tuple&nbsp;of&nbsp;column&nbsp;flags&nbsp;for&nbsp;last&nbsp;query,&nbsp;one&nbsp;entry&nbsp;per&nbsp;column<br>
+&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;the&nbsp;result&nbsp;set.&nbsp;Values&nbsp;correspond&nbsp;to&nbsp;those&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MySQLdb.constants.FLAG.&nbsp;See&nbsp;MySQL&nbsp;documentation&nbsp;(C&nbsp;API)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;more&nbsp;information.&nbsp;Non-standard&nbsp;extension.<br>
+&nbsp;<br>
+arraysize<br>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;number&nbsp;of&nbsp;rows&nbsp;fetchmany()&nbsp;will&nbsp;fetch<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="BaseCursor-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseCursor-__init__"><strong>__init__</strong></a>(self, connection)</dt></dl>
+
+<dl><dt><a name="BaseCursor-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BaseCursor-callproc"><strong>callproc</strong></a>(self, procname, args<font color="#909090">=()</font>)</dt><dd><tt>Execute&nbsp;stored&nbsp;procedure&nbsp;procname&nbsp;with&nbsp;args<br>
+&nbsp;<br>
+procname&nbsp;--&nbsp;string,&nbsp;name&nbsp;of&nbsp;procedure&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args&nbsp;--&nbsp;Sequence&nbsp;of&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;procedure<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;original&nbsp;args.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;<a href="http://www.python.org/peps/pep-0249.html">PEP-249</a>&nbsp;specifies&nbsp;that&nbsp;any&nbsp;modified<br>
+parameters&nbsp;must&nbsp;be&nbsp;returned.&nbsp;This&nbsp;is&nbsp;currently&nbsp;impossible<br>
+as&nbsp;they&nbsp;are&nbsp;only&nbsp;available&nbsp;by&nbsp;storing&nbsp;them&nbsp;in&nbsp;a&nbsp;server<br>
+variable&nbsp;and&nbsp;then&nbsp;retrieved&nbsp;by&nbsp;a&nbsp;query.&nbsp;Since&nbsp;stored<br>
+procedures&nbsp;return&nbsp;zero&nbsp;or&nbsp;more&nbsp;result&nbsp;sets,&nbsp;there&nbsp;is&nbsp;no<br>
+reliable&nbsp;way&nbsp;to&nbsp;get&nbsp;at&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;parameters&nbsp;via&nbsp;callproc.<br>
+The&nbsp;server&nbsp;variables&nbsp;are&nbsp;named&nbsp;@_procname_n,&nbsp;where&nbsp;procname<br>
+is&nbsp;the&nbsp;parameter&nbsp;above&nbsp;and&nbsp;n&nbsp;is&nbsp;the&nbsp;position&nbsp;of&nbsp;the&nbsp;parameter<br>
+(from&nbsp;zero).&nbsp;Once&nbsp;all&nbsp;result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure<br>
+have&nbsp;been&nbsp;fetched,&nbsp;you&nbsp;can&nbsp;issue&nbsp;a&nbsp;SELECT&nbsp;@_procname_0,&nbsp;...<br>
+query&nbsp;using&nbsp;.<a href="#BaseCursor-execute">execute</a>()&nbsp;to&nbsp;get&nbsp;any&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;values.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;The&nbsp;act&nbsp;of&nbsp;calling&nbsp;a&nbsp;stored&nbsp;procedure<br>
+itself&nbsp;creates&nbsp;an&nbsp;empty&nbsp;result&nbsp;set.&nbsp;This&nbsp;appears&nbsp;after&nbsp;any<br>
+result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure.&nbsp;This&nbsp;is&nbsp;non-standard<br>
+behavior&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;DB-API.&nbsp;Be&nbsp;sure&nbsp;to&nbsp;use&nbsp;<a href="#BaseCursor-nextset">nextset</a>()<br>
+to&nbsp;advance&nbsp;through&nbsp;all&nbsp;result&nbsp;sets;&nbsp;otherwise&nbsp;you&nbsp;may&nbsp;get<br>
+disconnected.</tt></dd></dl>
+
+<dl><dt><a name="BaseCursor-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;cursor.&nbsp;No&nbsp;further&nbsp;queries&nbsp;will&nbsp;be&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="BaseCursor-execute"><strong>execute</strong></a>(self, query, args<font color="#909090">=None</font>)</dt><dd><tt>Execute&nbsp;a&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+args&nbsp;--&nbsp;optional&nbsp;sequence&nbsp;or&nbsp;mapping,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;query.<br>
+&nbsp;<br>
+Note:&nbsp;If&nbsp;args&nbsp;is&nbsp;a&nbsp;sequence,&nbsp;then&nbsp;%s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the<br>
+parameter&nbsp;placeholder&nbsp;in&nbsp;the&nbsp;query.&nbsp;If&nbsp;a&nbsp;mapping&nbsp;is&nbsp;used,<br>
+%(key)s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;placeholder.<br>
+&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any</tt></dd></dl>
+
+<dl><dt><a name="BaseCursor-executemany"><strong>executemany</strong></a>(self, query, args)</dt><dd><tt>Execute&nbsp;a&nbsp;multi-row&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sequence&nbsp;of&nbsp;sequences&nbsp;or&nbsp;mappings,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;improves&nbsp;performance&nbsp;on&nbsp;multiple-row&nbsp;INSERT&nbsp;and<br>
+REPLACE.&nbsp;Otherwise&nbsp;it&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;looping&nbsp;over&nbsp;args&nbsp;with<br>
+<a href="#BaseCursor-execute">execute</a>().</tt></dd></dl>
+
+<dl><dt><a name="BaseCursor-nextset"><strong>nextset</strong></a>(self)</dt><dd><tt>Advance&nbsp;to&nbsp;the&nbsp;next&nbsp;result&nbsp;set.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;result&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="BaseCursor-setinputsizes"><strong>setinputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<dl><dt><a name="BaseCursor-setoutputsizes"><strong>setoutputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>DataError</strong> = &lt;class _mysql_exceptions.DataError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>DatabaseError</strong> = &lt;class _mysql_exceptions.DatabaseError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.</tt></dd></dl>
+
+<dl><dt><strong>Error</strong> = &lt;class _mysql_exceptions.Error&gt;</dt><dd><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;Warning).</tt></dd></dl>
+
+<dl><dt><strong>IntegrityError</strong> = &lt;class _mysql_exceptions.IntegrityError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>InterfaceError</strong> = &lt;class _mysql_exceptions.InterfaceError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><strong>InternalError</strong> = &lt;class _mysql_exceptions.InternalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>MySQLError</strong> = &lt;class _mysql_exceptions.MySQLError&gt;</dt><dd><tt>Exception&nbsp;related&nbsp;to&nbsp;operation&nbsp;with&nbsp;MySQL.</tt></dd></dl>
+
+<dl><dt><strong>NotSupportedError</strong> = &lt;class _mysql_exceptions.NotSupportedError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.rollback()&nbsp;on&nbsp;a&nbsp;connection&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.</tt></dd></dl>
+
+<dl><dt><strong>OperationalError</strong> = &lt;class _mysql_exceptions.OperationalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>ProgrammingError</strong> = &lt;class _mysql_exceptions.ProgrammingError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>Warning</strong> = &lt;class _mysql_exceptions.Warning&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'BaseCursor' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Cursor">class <strong>Cursor</strong></a>(<a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;the&nbsp;standard&nbsp;<a href="#Cursor">Cursor</a>&nbsp;class&nbsp;that&nbsp;returns&nbsp;rows&nbsp;as&nbsp;tuples<br>
+and&nbsp;stores&nbsp;the&nbsp;result&nbsp;set&nbsp;in&nbsp;the&nbsp;client.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="MySQLdb.cursors.html#Cursor">Cursor</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>:<br>
+<dl><dt><a name="Cursor-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Cursor-fetchall"><strong>fetchall</strong></a>(self)</dt><dd><tt>Fetchs&nbsp;all&nbsp;available&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-fetchmany"><strong>fetchmany</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;up&nbsp;to&nbsp;size&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;Result&nbsp;set&nbsp;may&nbsp;be&nbsp;smaller<br>
+than&nbsp;size.&nbsp;If&nbsp;size&nbsp;is&nbsp;not&nbsp;defined,&nbsp;cursor.arraysize&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-fetchone"><strong>fetchone</strong></a>(self)</dt><dd><tt>Fetches&nbsp;a&nbsp;single&nbsp;row&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;None&nbsp;indicates&nbsp;that<br>
+no&nbsp;more&nbsp;rows&nbsp;are&nbsp;available.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-scroll"><strong>scroll</strong></a>(self, value, mode<font color="#909090">='relative'</font>)</dt><dd><tt>Scroll&nbsp;the&nbsp;cursor&nbsp;in&nbsp;the&nbsp;result&nbsp;set&nbsp;to&nbsp;a&nbsp;new&nbsp;position&nbsp;according<br>
+to&nbsp;mode.<br>
+&nbsp;<br>
+If&nbsp;mode&nbsp;is&nbsp;'relative'&nbsp;(default),&nbsp;value&nbsp;is&nbsp;taken&nbsp;as&nbsp;offset&nbsp;to<br>
+the&nbsp;current&nbsp;position&nbsp;in&nbsp;the&nbsp;result&nbsp;set,&nbsp;if&nbsp;set&nbsp;to&nbsp;'absolute',<br>
+value&nbsp;states&nbsp;an&nbsp;absolute&nbsp;target&nbsp;position.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorStoreResultMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><a name="Cursor-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Cursor-__init__"><strong>__init__</strong></a>(self, connection)</dt></dl>
+
+<dl><dt><a name="Cursor-callproc"><strong>callproc</strong></a>(self, procname, args<font color="#909090">=()</font>)</dt><dd><tt>Execute&nbsp;stored&nbsp;procedure&nbsp;procname&nbsp;with&nbsp;args<br>
+&nbsp;<br>
+procname&nbsp;--&nbsp;string,&nbsp;name&nbsp;of&nbsp;procedure&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args&nbsp;--&nbsp;Sequence&nbsp;of&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;procedure<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;original&nbsp;args.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;<a href="http://www.python.org/peps/pep-0249.html">PEP-249</a>&nbsp;specifies&nbsp;that&nbsp;any&nbsp;modified<br>
+parameters&nbsp;must&nbsp;be&nbsp;returned.&nbsp;This&nbsp;is&nbsp;currently&nbsp;impossible<br>
+as&nbsp;they&nbsp;are&nbsp;only&nbsp;available&nbsp;by&nbsp;storing&nbsp;them&nbsp;in&nbsp;a&nbsp;server<br>
+variable&nbsp;and&nbsp;then&nbsp;retrieved&nbsp;by&nbsp;a&nbsp;query.&nbsp;Since&nbsp;stored<br>
+procedures&nbsp;return&nbsp;zero&nbsp;or&nbsp;more&nbsp;result&nbsp;sets,&nbsp;there&nbsp;is&nbsp;no<br>
+reliable&nbsp;way&nbsp;to&nbsp;get&nbsp;at&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;parameters&nbsp;via&nbsp;callproc.<br>
+The&nbsp;server&nbsp;variables&nbsp;are&nbsp;named&nbsp;@_procname_n,&nbsp;where&nbsp;procname<br>
+is&nbsp;the&nbsp;parameter&nbsp;above&nbsp;and&nbsp;n&nbsp;is&nbsp;the&nbsp;position&nbsp;of&nbsp;the&nbsp;parameter<br>
+(from&nbsp;zero).&nbsp;Once&nbsp;all&nbsp;result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure<br>
+have&nbsp;been&nbsp;fetched,&nbsp;you&nbsp;can&nbsp;issue&nbsp;a&nbsp;SELECT&nbsp;@_procname_0,&nbsp;...<br>
+query&nbsp;using&nbsp;.<a href="#Cursor-execute">execute</a>()&nbsp;to&nbsp;get&nbsp;any&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;values.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;The&nbsp;act&nbsp;of&nbsp;calling&nbsp;a&nbsp;stored&nbsp;procedure<br>
+itself&nbsp;creates&nbsp;an&nbsp;empty&nbsp;result&nbsp;set.&nbsp;This&nbsp;appears&nbsp;after&nbsp;any<br>
+result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure.&nbsp;This&nbsp;is&nbsp;non-standard<br>
+behavior&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;DB-API.&nbsp;Be&nbsp;sure&nbsp;to&nbsp;use&nbsp;<a href="#Cursor-nextset">nextset</a>()<br>
+to&nbsp;advance&nbsp;through&nbsp;all&nbsp;result&nbsp;sets;&nbsp;otherwise&nbsp;you&nbsp;may&nbsp;get<br>
+disconnected.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;cursor.&nbsp;No&nbsp;further&nbsp;queries&nbsp;will&nbsp;be&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-execute"><strong>execute</strong></a>(self, query, args<font color="#909090">=None</font>)</dt><dd><tt>Execute&nbsp;a&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+args&nbsp;--&nbsp;optional&nbsp;sequence&nbsp;or&nbsp;mapping,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;query.<br>
+&nbsp;<br>
+Note:&nbsp;If&nbsp;args&nbsp;is&nbsp;a&nbsp;sequence,&nbsp;then&nbsp;%s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the<br>
+parameter&nbsp;placeholder&nbsp;in&nbsp;the&nbsp;query.&nbsp;If&nbsp;a&nbsp;mapping&nbsp;is&nbsp;used,<br>
+%(key)s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;placeholder.<br>
+&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any</tt></dd></dl>
+
+<dl><dt><a name="Cursor-executemany"><strong>executemany</strong></a>(self, query, args)</dt><dd><tt>Execute&nbsp;a&nbsp;multi-row&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sequence&nbsp;of&nbsp;sequences&nbsp;or&nbsp;mappings,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;improves&nbsp;performance&nbsp;on&nbsp;multiple-row&nbsp;INSERT&nbsp;and<br>
+REPLACE.&nbsp;Otherwise&nbsp;it&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;looping&nbsp;over&nbsp;args&nbsp;with<br>
+<a href="#Cursor-execute">execute</a>().</tt></dd></dl>
+
+<dl><dt><a name="Cursor-nextset"><strong>nextset</strong></a>(self)</dt><dd><tt>Advance&nbsp;to&nbsp;the&nbsp;next&nbsp;result&nbsp;set.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;result&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-setinputsizes"><strong>setinputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<dl><dt><a name="Cursor-setoutputsizes"><strong>setoutputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><strong>DataError</strong> = &lt;class _mysql_exceptions.DataError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>DatabaseError</strong> = &lt;class _mysql_exceptions.DatabaseError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.</tt></dd></dl>
+
+<dl><dt><strong>Error</strong> = &lt;class _mysql_exceptions.Error&gt;</dt><dd><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;Warning).</tt></dd></dl>
+
+<dl><dt><strong>IntegrityError</strong> = &lt;class _mysql_exceptions.IntegrityError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>InterfaceError</strong> = &lt;class _mysql_exceptions.InterfaceError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><strong>InternalError</strong> = &lt;class _mysql_exceptions.InternalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>MySQLError</strong> = &lt;class _mysql_exceptions.MySQLError&gt;</dt><dd><tt>Exception&nbsp;related&nbsp;to&nbsp;operation&nbsp;with&nbsp;MySQL.</tt></dd></dl>
+
+<dl><dt><strong>NotSupportedError</strong> = &lt;class _mysql_exceptions.NotSupportedError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.rollback()&nbsp;on&nbsp;a&nbsp;connection&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.</tt></dd></dl>
+
+<dl><dt><strong>OperationalError</strong> = &lt;class _mysql_exceptions.OperationalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>ProgrammingError</strong> = &lt;class _mysql_exceptions.ProgrammingError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>Warning</strong> = &lt;class _mysql_exceptions.Warning&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CursorDictRowsMixIn">class <strong>CursorDictRowsMixIn</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;MixIn&nbsp;class&nbsp;that&nbsp;causes&nbsp;all&nbsp;rows&nbsp;to&nbsp;be&nbsp;returned&nbsp;as<br>
+dictionaries.&nbsp;This&nbsp;is&nbsp;a&nbsp;non-standard&nbsp;feature.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CursorDictRowsMixIn-fetchallDict"><strong>fetchallDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;all&nbsp;available&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;fetchall()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="CursorDictRowsMixIn-fetchmanyDict"><strong>fetchmanyDict</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;several&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;fetchmany()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="CursorDictRowsMixIn-fetchoneDict"><strong>fetchoneDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;a&nbsp;single&nbsp;row&nbsp;as&nbsp;a&nbsp;dictionary.&nbsp;Deprecated:<br>
+Use&nbsp;fetchone()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorDictRowsMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CursorOldDictRowsMixIn">class <strong>CursorOldDictRowsMixIn</strong></a>(<a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;MixIn&nbsp;class&nbsp;that&nbsp;returns&nbsp;rows&nbsp;as&nbsp;dictionaries&nbsp;with<br>
+the&nbsp;same&nbsp;key&nbsp;convention&nbsp;as&nbsp;the&nbsp;old&nbsp;Mysqldb&nbsp;(MySQLmodule).&nbsp;Don't<br>
+use&nbsp;this.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="MySQLdb.cursors.html#CursorOldDictRowsMixIn">CursorOldDictRowsMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>:<br>
+<dl><dt><a name="CursorOldDictRowsMixIn-fetchallDict"><strong>fetchallDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;all&nbsp;available&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;fetchall()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="CursorOldDictRowsMixIn-fetchmanyDict"><strong>fetchmanyDict</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;several&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;fetchmany()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="CursorOldDictRowsMixIn-fetchoneDict"><strong>fetchoneDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;a&nbsp;single&nbsp;row&nbsp;as&nbsp;a&nbsp;dictionary.&nbsp;Deprecated:<br>
+Use&nbsp;fetchone()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorDictRowsMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CursorStoreResultMixIn">class <strong>CursorStoreResultMixIn</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;MixIn&nbsp;class&nbsp;which&nbsp;causes&nbsp;the&nbsp;entire&nbsp;result&nbsp;set&nbsp;to&nbsp;be<br>
+stored&nbsp;on&nbsp;the&nbsp;client&nbsp;side,&nbsp;i.e.&nbsp;it&nbsp;uses&nbsp;mysql_store_result().&nbsp;If&nbsp;the<br>
+result&nbsp;set&nbsp;can&nbsp;be&nbsp;very&nbsp;large,&nbsp;consider&nbsp;adding&nbsp;a&nbsp;LIMIT&nbsp;clause&nbsp;to&nbsp;your<br>
+query,&nbsp;or&nbsp;using&nbsp;<a href="#CursorUseResultMixIn">CursorUseResultMixIn</a>&nbsp;instead.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CursorStoreResultMixIn-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CursorStoreResultMixIn-fetchall"><strong>fetchall</strong></a>(self)</dt><dd><tt>Fetchs&nbsp;all&nbsp;available&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="CursorStoreResultMixIn-fetchmany"><strong>fetchmany</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;up&nbsp;to&nbsp;size&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;Result&nbsp;set&nbsp;may&nbsp;be&nbsp;smaller<br>
+than&nbsp;size.&nbsp;If&nbsp;size&nbsp;is&nbsp;not&nbsp;defined,&nbsp;cursor.arraysize&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="CursorStoreResultMixIn-fetchone"><strong>fetchone</strong></a>(self)</dt><dd><tt>Fetches&nbsp;a&nbsp;single&nbsp;row&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;None&nbsp;indicates&nbsp;that<br>
+no&nbsp;more&nbsp;rows&nbsp;are&nbsp;available.</tt></dd></dl>
+
+<dl><dt><a name="CursorStoreResultMixIn-scroll"><strong>scroll</strong></a>(self, value, mode<font color="#909090">='relative'</font>)</dt><dd><tt>Scroll&nbsp;the&nbsp;cursor&nbsp;in&nbsp;the&nbsp;result&nbsp;set&nbsp;to&nbsp;a&nbsp;new&nbsp;position&nbsp;according<br>
+to&nbsp;mode.<br>
+&nbsp;<br>
+If&nbsp;mode&nbsp;is&nbsp;'relative'&nbsp;(default),&nbsp;value&nbsp;is&nbsp;taken&nbsp;as&nbsp;offset&nbsp;to<br>
+the&nbsp;current&nbsp;position&nbsp;in&nbsp;the&nbsp;result&nbsp;set,&nbsp;if&nbsp;set&nbsp;to&nbsp;'absolute',<br>
+value&nbsp;states&nbsp;an&nbsp;absolute&nbsp;target&nbsp;position.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorStoreResultMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CursorTupleRowsMixIn">class <strong>CursorTupleRowsMixIn</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;MixIn&nbsp;class&nbsp;that&nbsp;causes&nbsp;all&nbsp;rows&nbsp;to&nbsp;be&nbsp;returned&nbsp;as&nbsp;tuples,<br>
+which&nbsp;is&nbsp;the&nbsp;standard&nbsp;form&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorTupleRowsMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CursorUseResultMixIn">class <strong>CursorUseResultMixIn</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;MixIn&nbsp;class&nbsp;which&nbsp;causes&nbsp;the&nbsp;result&nbsp;set&nbsp;to&nbsp;be&nbsp;stored<br>
+in&nbsp;the&nbsp;server&nbsp;and&nbsp;sent&nbsp;row-by-row&nbsp;to&nbsp;client&nbsp;side,&nbsp;i.e.&nbsp;it&nbsp;uses<br>
+mysql_use_result().&nbsp;You&nbsp;MUST&nbsp;retrieve&nbsp;the&nbsp;entire&nbsp;result&nbsp;set&nbsp;and<br>
+close()&nbsp;the&nbsp;cursor&nbsp;before&nbsp;additional&nbsp;queries&nbsp;can&nbsp;be&nbsp;peformed&nbsp;on<br>
+the&nbsp;connection.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CursorUseResultMixIn-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CursorUseResultMixIn-fetchall"><strong>fetchall</strong></a>(self)</dt><dd><tt>Fetchs&nbsp;all&nbsp;available&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="CursorUseResultMixIn-fetchmany"><strong>fetchmany</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;up&nbsp;to&nbsp;size&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;Result&nbsp;set&nbsp;may&nbsp;be&nbsp;smaller<br>
+than&nbsp;size.&nbsp;If&nbsp;size&nbsp;is&nbsp;not&nbsp;defined,&nbsp;cursor.arraysize&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="CursorUseResultMixIn-fetchone"><strong>fetchone</strong></a>(self)</dt><dd><tt>Fetches&nbsp;a&nbsp;single&nbsp;row&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="CursorUseResultMixIn-next"><strong>next</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorUseResultMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DictCursor">class <strong>DictCursor</strong></a>(<a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;<a href="#Cursor">Cursor</a>&nbsp;class&nbsp;that&nbsp;returns&nbsp;rows&nbsp;as&nbsp;dictionaries&nbsp;and<br>
+stores&nbsp;the&nbsp;result&nbsp;set&nbsp;in&nbsp;the&nbsp;client.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="MySQLdb.cursors.html#DictCursor">DictCursor</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>:<br>
+<dl><dt><a name="DictCursor-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DictCursor-fetchall"><strong>fetchall</strong></a>(self)</dt><dd><tt>Fetchs&nbsp;all&nbsp;available&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-fetchmany"><strong>fetchmany</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;up&nbsp;to&nbsp;size&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;Result&nbsp;set&nbsp;may&nbsp;be&nbsp;smaller<br>
+than&nbsp;size.&nbsp;If&nbsp;size&nbsp;is&nbsp;not&nbsp;defined,&nbsp;cursor.arraysize&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-fetchone"><strong>fetchone</strong></a>(self)</dt><dd><tt>Fetches&nbsp;a&nbsp;single&nbsp;row&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;None&nbsp;indicates&nbsp;that<br>
+no&nbsp;more&nbsp;rows&nbsp;are&nbsp;available.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-scroll"><strong>scroll</strong></a>(self, value, mode<font color="#909090">='relative'</font>)</dt><dd><tt>Scroll&nbsp;the&nbsp;cursor&nbsp;in&nbsp;the&nbsp;result&nbsp;set&nbsp;to&nbsp;a&nbsp;new&nbsp;position&nbsp;according<br>
+to&nbsp;mode.<br>
+&nbsp;<br>
+If&nbsp;mode&nbsp;is&nbsp;'relative'&nbsp;(default),&nbsp;value&nbsp;is&nbsp;taken&nbsp;as&nbsp;offset&nbsp;to<br>
+the&nbsp;current&nbsp;position&nbsp;in&nbsp;the&nbsp;result&nbsp;set,&nbsp;if&nbsp;set&nbsp;to&nbsp;'absolute',<br>
+value&nbsp;states&nbsp;an&nbsp;absolute&nbsp;target&nbsp;position.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#CursorStoreResultMixIn">CursorStoreResultMixIn</a>:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorStoreResultMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>:<br>
+<dl><dt><a name="DictCursor-fetchallDict"><strong>fetchallDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;all&nbsp;available&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;<a href="#DictCursor-fetchall">fetchall</a>()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-fetchmanyDict"><strong>fetchmanyDict</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;several&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;<a href="#DictCursor-fetchmany">fetchmany</a>()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-fetchoneDict"><strong>fetchoneDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;a&nbsp;single&nbsp;row&nbsp;as&nbsp;a&nbsp;dictionary.&nbsp;Deprecated:<br>
+Use&nbsp;<a href="#DictCursor-fetchone">fetchone</a>()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><a name="DictCursor-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DictCursor-__init__"><strong>__init__</strong></a>(self, connection)</dt></dl>
+
+<dl><dt><a name="DictCursor-callproc"><strong>callproc</strong></a>(self, procname, args<font color="#909090">=()</font>)</dt><dd><tt>Execute&nbsp;stored&nbsp;procedure&nbsp;procname&nbsp;with&nbsp;args<br>
+&nbsp;<br>
+procname&nbsp;--&nbsp;string,&nbsp;name&nbsp;of&nbsp;procedure&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args&nbsp;--&nbsp;Sequence&nbsp;of&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;procedure<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;original&nbsp;args.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;<a href="http://www.python.org/peps/pep-0249.html">PEP-249</a>&nbsp;specifies&nbsp;that&nbsp;any&nbsp;modified<br>
+parameters&nbsp;must&nbsp;be&nbsp;returned.&nbsp;This&nbsp;is&nbsp;currently&nbsp;impossible<br>
+as&nbsp;they&nbsp;are&nbsp;only&nbsp;available&nbsp;by&nbsp;storing&nbsp;them&nbsp;in&nbsp;a&nbsp;server<br>
+variable&nbsp;and&nbsp;then&nbsp;retrieved&nbsp;by&nbsp;a&nbsp;query.&nbsp;Since&nbsp;stored<br>
+procedures&nbsp;return&nbsp;zero&nbsp;or&nbsp;more&nbsp;result&nbsp;sets,&nbsp;there&nbsp;is&nbsp;no<br>
+reliable&nbsp;way&nbsp;to&nbsp;get&nbsp;at&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;parameters&nbsp;via&nbsp;callproc.<br>
+The&nbsp;server&nbsp;variables&nbsp;are&nbsp;named&nbsp;@_procname_n,&nbsp;where&nbsp;procname<br>
+is&nbsp;the&nbsp;parameter&nbsp;above&nbsp;and&nbsp;n&nbsp;is&nbsp;the&nbsp;position&nbsp;of&nbsp;the&nbsp;parameter<br>
+(from&nbsp;zero).&nbsp;Once&nbsp;all&nbsp;result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure<br>
+have&nbsp;been&nbsp;fetched,&nbsp;you&nbsp;can&nbsp;issue&nbsp;a&nbsp;SELECT&nbsp;@_procname_0,&nbsp;...<br>
+query&nbsp;using&nbsp;.<a href="#DictCursor-execute">execute</a>()&nbsp;to&nbsp;get&nbsp;any&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;values.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;The&nbsp;act&nbsp;of&nbsp;calling&nbsp;a&nbsp;stored&nbsp;procedure<br>
+itself&nbsp;creates&nbsp;an&nbsp;empty&nbsp;result&nbsp;set.&nbsp;This&nbsp;appears&nbsp;after&nbsp;any<br>
+result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure.&nbsp;This&nbsp;is&nbsp;non-standard<br>
+behavior&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;DB-API.&nbsp;Be&nbsp;sure&nbsp;to&nbsp;use&nbsp;<a href="#DictCursor-nextset">nextset</a>()<br>
+to&nbsp;advance&nbsp;through&nbsp;all&nbsp;result&nbsp;sets;&nbsp;otherwise&nbsp;you&nbsp;may&nbsp;get<br>
+disconnected.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;cursor.&nbsp;No&nbsp;further&nbsp;queries&nbsp;will&nbsp;be&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-execute"><strong>execute</strong></a>(self, query, args<font color="#909090">=None</font>)</dt><dd><tt>Execute&nbsp;a&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+args&nbsp;--&nbsp;optional&nbsp;sequence&nbsp;or&nbsp;mapping,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;query.<br>
+&nbsp;<br>
+Note:&nbsp;If&nbsp;args&nbsp;is&nbsp;a&nbsp;sequence,&nbsp;then&nbsp;%s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the<br>
+parameter&nbsp;placeholder&nbsp;in&nbsp;the&nbsp;query.&nbsp;If&nbsp;a&nbsp;mapping&nbsp;is&nbsp;used,<br>
+%(key)s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;placeholder.<br>
+&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-executemany"><strong>executemany</strong></a>(self, query, args)</dt><dd><tt>Execute&nbsp;a&nbsp;multi-row&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sequence&nbsp;of&nbsp;sequences&nbsp;or&nbsp;mappings,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;improves&nbsp;performance&nbsp;on&nbsp;multiple-row&nbsp;INSERT&nbsp;and<br>
+REPLACE.&nbsp;Otherwise&nbsp;it&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;looping&nbsp;over&nbsp;args&nbsp;with<br>
+<a href="#DictCursor-execute">execute</a>().</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-nextset"><strong>nextset</strong></a>(self)</dt><dd><tt>Advance&nbsp;to&nbsp;the&nbsp;next&nbsp;result&nbsp;set.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;result&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-setinputsizes"><strong>setinputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<dl><dt><a name="DictCursor-setoutputsizes"><strong>setoutputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><strong>DataError</strong> = &lt;class _mysql_exceptions.DataError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>DatabaseError</strong> = &lt;class _mysql_exceptions.DatabaseError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.</tt></dd></dl>
+
+<dl><dt><strong>Error</strong> = &lt;class _mysql_exceptions.Error&gt;</dt><dd><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;Warning).</tt></dd></dl>
+
+<dl><dt><strong>IntegrityError</strong> = &lt;class _mysql_exceptions.IntegrityError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>InterfaceError</strong> = &lt;class _mysql_exceptions.InterfaceError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><strong>InternalError</strong> = &lt;class _mysql_exceptions.InternalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>MySQLError</strong> = &lt;class _mysql_exceptions.MySQLError&gt;</dt><dd><tt>Exception&nbsp;related&nbsp;to&nbsp;operation&nbsp;with&nbsp;MySQL.</tt></dd></dl>
+
+<dl><dt><strong>NotSupportedError</strong> = &lt;class _mysql_exceptions.NotSupportedError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.rollback()&nbsp;on&nbsp;a&nbsp;connection&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.</tt></dd></dl>
+
+<dl><dt><strong>OperationalError</strong> = &lt;class _mysql_exceptions.OperationalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>ProgrammingError</strong> = &lt;class _mysql_exceptions.ProgrammingError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>Warning</strong> = &lt;class _mysql_exceptions.Warning&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SSCursor">class <strong>SSCursor</strong></a>(<a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;<a href="#Cursor">Cursor</a>&nbsp;class&nbsp;that&nbsp;returns&nbsp;rows&nbsp;as&nbsp;tuples&nbsp;and&nbsp;stores<br>
+the&nbsp;result&nbsp;set&nbsp;in&nbsp;the&nbsp;server.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="MySQLdb.cursors.html#SSCursor">SSCursor</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorTupleRowsMixIn">CursorTupleRowsMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>:<br>
+<dl><dt><a name="SSCursor-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SSCursor-fetchall"><strong>fetchall</strong></a>(self)</dt><dd><tt>Fetchs&nbsp;all&nbsp;available&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-fetchmany"><strong>fetchmany</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;up&nbsp;to&nbsp;size&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;Result&nbsp;set&nbsp;may&nbsp;be&nbsp;smaller<br>
+than&nbsp;size.&nbsp;If&nbsp;size&nbsp;is&nbsp;not&nbsp;defined,&nbsp;cursor.arraysize&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-fetchone"><strong>fetchone</strong></a>(self)</dt><dd><tt>Fetches&nbsp;a&nbsp;single&nbsp;row&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-next"><strong>next</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorUseResultMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><a name="SSCursor-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SSCursor-__init__"><strong>__init__</strong></a>(self, connection)</dt></dl>
+
+<dl><dt><a name="SSCursor-callproc"><strong>callproc</strong></a>(self, procname, args<font color="#909090">=()</font>)</dt><dd><tt>Execute&nbsp;stored&nbsp;procedure&nbsp;procname&nbsp;with&nbsp;args<br>
+&nbsp;<br>
+procname&nbsp;--&nbsp;string,&nbsp;name&nbsp;of&nbsp;procedure&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args&nbsp;--&nbsp;Sequence&nbsp;of&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;procedure<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;original&nbsp;args.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;<a href="http://www.python.org/peps/pep-0249.html">PEP-249</a>&nbsp;specifies&nbsp;that&nbsp;any&nbsp;modified<br>
+parameters&nbsp;must&nbsp;be&nbsp;returned.&nbsp;This&nbsp;is&nbsp;currently&nbsp;impossible<br>
+as&nbsp;they&nbsp;are&nbsp;only&nbsp;available&nbsp;by&nbsp;storing&nbsp;them&nbsp;in&nbsp;a&nbsp;server<br>
+variable&nbsp;and&nbsp;then&nbsp;retrieved&nbsp;by&nbsp;a&nbsp;query.&nbsp;Since&nbsp;stored<br>
+procedures&nbsp;return&nbsp;zero&nbsp;or&nbsp;more&nbsp;result&nbsp;sets,&nbsp;there&nbsp;is&nbsp;no<br>
+reliable&nbsp;way&nbsp;to&nbsp;get&nbsp;at&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;parameters&nbsp;via&nbsp;callproc.<br>
+The&nbsp;server&nbsp;variables&nbsp;are&nbsp;named&nbsp;@_procname_n,&nbsp;where&nbsp;procname<br>
+is&nbsp;the&nbsp;parameter&nbsp;above&nbsp;and&nbsp;n&nbsp;is&nbsp;the&nbsp;position&nbsp;of&nbsp;the&nbsp;parameter<br>
+(from&nbsp;zero).&nbsp;Once&nbsp;all&nbsp;result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure<br>
+have&nbsp;been&nbsp;fetched,&nbsp;you&nbsp;can&nbsp;issue&nbsp;a&nbsp;SELECT&nbsp;@_procname_0,&nbsp;...<br>
+query&nbsp;using&nbsp;.<a href="#SSCursor-execute">execute</a>()&nbsp;to&nbsp;get&nbsp;any&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;values.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;The&nbsp;act&nbsp;of&nbsp;calling&nbsp;a&nbsp;stored&nbsp;procedure<br>
+itself&nbsp;creates&nbsp;an&nbsp;empty&nbsp;result&nbsp;set.&nbsp;This&nbsp;appears&nbsp;after&nbsp;any<br>
+result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure.&nbsp;This&nbsp;is&nbsp;non-standard<br>
+behavior&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;DB-API.&nbsp;Be&nbsp;sure&nbsp;to&nbsp;use&nbsp;<a href="#SSCursor-nextset">nextset</a>()<br>
+to&nbsp;advance&nbsp;through&nbsp;all&nbsp;result&nbsp;sets;&nbsp;otherwise&nbsp;you&nbsp;may&nbsp;get<br>
+disconnected.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;cursor.&nbsp;No&nbsp;further&nbsp;queries&nbsp;will&nbsp;be&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-execute"><strong>execute</strong></a>(self, query, args<font color="#909090">=None</font>)</dt><dd><tt>Execute&nbsp;a&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+args&nbsp;--&nbsp;optional&nbsp;sequence&nbsp;or&nbsp;mapping,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;query.<br>
+&nbsp;<br>
+Note:&nbsp;If&nbsp;args&nbsp;is&nbsp;a&nbsp;sequence,&nbsp;then&nbsp;%s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the<br>
+parameter&nbsp;placeholder&nbsp;in&nbsp;the&nbsp;query.&nbsp;If&nbsp;a&nbsp;mapping&nbsp;is&nbsp;used,<br>
+%(key)s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;placeholder.<br>
+&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-executemany"><strong>executemany</strong></a>(self, query, args)</dt><dd><tt>Execute&nbsp;a&nbsp;multi-row&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sequence&nbsp;of&nbsp;sequences&nbsp;or&nbsp;mappings,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;improves&nbsp;performance&nbsp;on&nbsp;multiple-row&nbsp;INSERT&nbsp;and<br>
+REPLACE.&nbsp;Otherwise&nbsp;it&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;looping&nbsp;over&nbsp;args&nbsp;with<br>
+<a href="#SSCursor-execute">execute</a>().</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-nextset"><strong>nextset</strong></a>(self)</dt><dd><tt>Advance&nbsp;to&nbsp;the&nbsp;next&nbsp;result&nbsp;set.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;result&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-setinputsizes"><strong>setinputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<dl><dt><a name="SSCursor-setoutputsizes"><strong>setoutputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><strong>DataError</strong> = &lt;class _mysql_exceptions.DataError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>DatabaseError</strong> = &lt;class _mysql_exceptions.DatabaseError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.</tt></dd></dl>
+
+<dl><dt><strong>Error</strong> = &lt;class _mysql_exceptions.Error&gt;</dt><dd><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;Warning).</tt></dd></dl>
+
+<dl><dt><strong>IntegrityError</strong> = &lt;class _mysql_exceptions.IntegrityError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>InterfaceError</strong> = &lt;class _mysql_exceptions.InterfaceError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><strong>InternalError</strong> = &lt;class _mysql_exceptions.InternalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>MySQLError</strong> = &lt;class _mysql_exceptions.MySQLError&gt;</dt><dd><tt>Exception&nbsp;related&nbsp;to&nbsp;operation&nbsp;with&nbsp;MySQL.</tt></dd></dl>
+
+<dl><dt><strong>NotSupportedError</strong> = &lt;class _mysql_exceptions.NotSupportedError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.rollback()&nbsp;on&nbsp;a&nbsp;connection&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.</tt></dd></dl>
+
+<dl><dt><strong>OperationalError</strong> = &lt;class _mysql_exceptions.OperationalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>ProgrammingError</strong> = &lt;class _mysql_exceptions.ProgrammingError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>Warning</strong> = &lt;class _mysql_exceptions.Warning&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.</tt></dd></dl>
+
+</td></tr></tbody></table> </p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SSDictCursor">class <strong>SSDictCursor</strong></a>(<a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>, <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>, <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>This&nbsp;is&nbsp;a&nbsp;<a href="#Cursor">Cursor</a>&nbsp;class&nbsp;that&nbsp;returns&nbsp;rows&nbsp;as&nbsp;dictionaries&nbsp;and<br>
+stores&nbsp;the&nbsp;result&nbsp;set&nbsp;in&nbsp;the&nbsp;server.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="MySQLdb.cursors.html#SSDictCursor">SSDictCursor</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a></dd>
+<dd><a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>:<br>
+<dl><dt><a name="SSDictCursor-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SSDictCursor-fetchall"><strong>fetchall</strong></a>(self)</dt><dd><tt>Fetchs&nbsp;all&nbsp;available&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-fetchmany"><strong>fetchmany</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;up&nbsp;to&nbsp;size&nbsp;rows&nbsp;from&nbsp;the&nbsp;cursor.&nbsp;Result&nbsp;set&nbsp;may&nbsp;be&nbsp;smaller<br>
+than&nbsp;size.&nbsp;If&nbsp;size&nbsp;is&nbsp;not&nbsp;defined,&nbsp;cursor.arraysize&nbsp;is&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-fetchone"><strong>fetchone</strong></a>(self)</dt><dd><tt>Fetches&nbsp;a&nbsp;single&nbsp;row&nbsp;from&nbsp;the&nbsp;cursor.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-next"><strong>next</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#CursorUseResultMixIn">CursorUseResultMixIn</a>:<br>
+<dl><dt><strong>__dict__</strong> = &lt;dictproxy object&gt;</dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<dl><dt><strong>__weakref__</strong> = &lt;attribute '__weakref__' of 'CursorUseResultMixIn' objects&gt;</dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;(if&nbsp;defined)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#CursorDictRowsMixIn">CursorDictRowsMixIn</a>:<br>
+<dl><dt><a name="SSDictCursor-fetchallDict"><strong>fetchallDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;all&nbsp;available&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;<a href="#SSDictCursor-fetchall">fetchall</a>()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-fetchmanyDict"><strong>fetchmanyDict</strong></a>(self, size<font color="#909090">=None</font>)</dt><dd><tt>Fetch&nbsp;several&nbsp;rows&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Deprecated:<br>
+Use&nbsp;<a href="#SSDictCursor-fetchmany">fetchmany</a>()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-fetchoneDict"><strong>fetchoneDict</strong></a>(self)</dt><dd><tt>Fetch&nbsp;a&nbsp;single&nbsp;row&nbsp;as&nbsp;a&nbsp;dictionary.&nbsp;Deprecated:<br>
+Use&nbsp;<a href="#SSDictCursor-fetchone">fetchone</a>()&nbsp;instead.&nbsp;Will&nbsp;be&nbsp;removed&nbsp;in&nbsp;1.3.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><a name="SSDictCursor-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="SSDictCursor-__init__"><strong>__init__</strong></a>(self, connection)</dt></dl>
+
+<dl><dt><a name="SSDictCursor-callproc"><strong>callproc</strong></a>(self, procname, args<font color="#909090">=()</font>)</dt><dd><tt>Execute&nbsp;stored&nbsp;procedure&nbsp;procname&nbsp;with&nbsp;args<br>
+&nbsp;<br>
+procname&nbsp;--&nbsp;string,&nbsp;name&nbsp;of&nbsp;procedure&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args&nbsp;--&nbsp;Sequence&nbsp;of&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;procedure<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;original&nbsp;args.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;<a href="http://www.python.org/peps/pep-0249.html">PEP-249</a>&nbsp;specifies&nbsp;that&nbsp;any&nbsp;modified<br>
+parameters&nbsp;must&nbsp;be&nbsp;returned.&nbsp;This&nbsp;is&nbsp;currently&nbsp;impossible<br>
+as&nbsp;they&nbsp;are&nbsp;only&nbsp;available&nbsp;by&nbsp;storing&nbsp;them&nbsp;in&nbsp;a&nbsp;server<br>
+variable&nbsp;and&nbsp;then&nbsp;retrieved&nbsp;by&nbsp;a&nbsp;query.&nbsp;Since&nbsp;stored<br>
+procedures&nbsp;return&nbsp;zero&nbsp;or&nbsp;more&nbsp;result&nbsp;sets,&nbsp;there&nbsp;is&nbsp;no<br>
+reliable&nbsp;way&nbsp;to&nbsp;get&nbsp;at&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;parameters&nbsp;via&nbsp;callproc.<br>
+The&nbsp;server&nbsp;variables&nbsp;are&nbsp;named&nbsp;@_procname_n,&nbsp;where&nbsp;procname<br>
+is&nbsp;the&nbsp;parameter&nbsp;above&nbsp;and&nbsp;n&nbsp;is&nbsp;the&nbsp;position&nbsp;of&nbsp;the&nbsp;parameter<br>
+(from&nbsp;zero).&nbsp;Once&nbsp;all&nbsp;result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure<br>
+have&nbsp;been&nbsp;fetched,&nbsp;you&nbsp;can&nbsp;issue&nbsp;a&nbsp;SELECT&nbsp;@_procname_0,&nbsp;...<br>
+query&nbsp;using&nbsp;.<a href="#SSDictCursor-execute">execute</a>()&nbsp;to&nbsp;get&nbsp;any&nbsp;OUT&nbsp;or&nbsp;INOUT&nbsp;values.<br>
+&nbsp;<br>
+Compatibility&nbsp;warning:&nbsp;The&nbsp;act&nbsp;of&nbsp;calling&nbsp;a&nbsp;stored&nbsp;procedure<br>
+itself&nbsp;creates&nbsp;an&nbsp;empty&nbsp;result&nbsp;set.&nbsp;This&nbsp;appears&nbsp;after&nbsp;any<br>
+result&nbsp;sets&nbsp;generated&nbsp;by&nbsp;the&nbsp;procedure.&nbsp;This&nbsp;is&nbsp;non-standard<br>
+behavior&nbsp;with&nbsp;respect&nbsp;to&nbsp;the&nbsp;DB-API.&nbsp;Be&nbsp;sure&nbsp;to&nbsp;use&nbsp;<a href="#SSDictCursor-nextset">nextset</a>()<br>
+to&nbsp;advance&nbsp;through&nbsp;all&nbsp;result&nbsp;sets;&nbsp;otherwise&nbsp;you&nbsp;may&nbsp;get<br>
+disconnected.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-close"><strong>close</strong></a>(self)</dt><dd><tt>Close&nbsp;the&nbsp;cursor.&nbsp;No&nbsp;further&nbsp;queries&nbsp;will&nbsp;be&nbsp;possible.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-execute"><strong>execute</strong></a>(self, query, args<font color="#909090">=None</font>)</dt><dd><tt>Execute&nbsp;a&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+args&nbsp;--&nbsp;optional&nbsp;sequence&nbsp;or&nbsp;mapping,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with&nbsp;query.<br>
+&nbsp;<br>
+Note:&nbsp;If&nbsp;args&nbsp;is&nbsp;a&nbsp;sequence,&nbsp;then&nbsp;%s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the<br>
+parameter&nbsp;placeholder&nbsp;in&nbsp;the&nbsp;query.&nbsp;If&nbsp;a&nbsp;mapping&nbsp;is&nbsp;used,<br>
+%(key)s&nbsp;must&nbsp;be&nbsp;used&nbsp;as&nbsp;the&nbsp;placeholder.<br>
+&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-executemany"><strong>executemany</strong></a>(self, query, args)</dt><dd><tt>Execute&nbsp;a&nbsp;multi-row&nbsp;query.<br>
+&nbsp;<br>
+query&nbsp;--&nbsp;string,&nbsp;query&nbsp;to&nbsp;execute&nbsp;on&nbsp;server<br>
+&nbsp;<br>
+args<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sequence&nbsp;of&nbsp;sequences&nbsp;or&nbsp;mappings,&nbsp;parameters&nbsp;to&nbsp;use&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;query.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns&nbsp;long&nbsp;integer&nbsp;rows&nbsp;affected,&nbsp;if&nbsp;any.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;improves&nbsp;performance&nbsp;on&nbsp;multiple-row&nbsp;INSERT&nbsp;and<br>
+REPLACE.&nbsp;Otherwise&nbsp;it&nbsp;is&nbsp;equivalent&nbsp;to&nbsp;looping&nbsp;over&nbsp;args&nbsp;with<br>
+<a href="#SSDictCursor-execute">execute</a>().</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-nextset"><strong>nextset</strong></a>(self)</dt><dd><tt>Advance&nbsp;to&nbsp;the&nbsp;next&nbsp;result&nbsp;set.<br>
+&nbsp;<br>
+Returns&nbsp;None&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;more&nbsp;result&nbsp;sets.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-setinputsizes"><strong>setinputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<dl><dt><a name="SSDictCursor-setoutputsizes"><strong>setoutputsizes</strong></a>(self, *args)</dt><dd><tt>Does&nbsp;nothing,&nbsp;required&nbsp;by&nbsp;DB&nbsp;API.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="MySQLdb.cursors.html#BaseCursor">BaseCursor</a>:<br>
+<dl><dt><strong>DataError</strong> = &lt;class _mysql_exceptions.DataError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;due&nbsp;to&nbsp;problems&nbsp;with&nbsp;the<br>
+processed&nbsp;data&nbsp;like&nbsp;division&nbsp;by&nbsp;zero,&nbsp;numeric&nbsp;value&nbsp;out&nbsp;of&nbsp;range,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>DatabaseError</strong> = &lt;class _mysql_exceptions.DatabaseError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the<br>
+database.</tt></dd></dl>
+
+<dl><dt><strong>Error</strong> = &lt;class _mysql_exceptions.Error&gt;</dt><dd><tt>Exception&nbsp;that&nbsp;is&nbsp;the&nbsp;base&nbsp;class&nbsp;of&nbsp;all&nbsp;other&nbsp;error&nbsp;exceptions<br>
+(not&nbsp;Warning).</tt></dd></dl>
+
+<dl><dt><strong>IntegrityError</strong> = &lt;class _mysql_exceptions.IntegrityError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;relational&nbsp;integrity&nbsp;of&nbsp;the&nbsp;database<br>
+is&nbsp;affected,&nbsp;e.g.&nbsp;a&nbsp;foreign&nbsp;key&nbsp;check&nbsp;fails,&nbsp;duplicate&nbsp;key,<br>
+etc.</tt></dd></dl>
+
+<dl><dt><strong>InterfaceError</strong> = &lt;class _mysql_exceptions.InterfaceError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database<br>
+interface&nbsp;rather&nbsp;than&nbsp;the&nbsp;database&nbsp;itself.</tt></dd></dl>
+
+<dl><dt><strong>InternalError</strong> = &lt;class _mysql_exceptions.InternalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;when&nbsp;the&nbsp;database&nbsp;encounters&nbsp;an&nbsp;internal<br>
+error,&nbsp;e.g.&nbsp;the&nbsp;cursor&nbsp;is&nbsp;not&nbsp;valid&nbsp;anymore,&nbsp;the&nbsp;transaction&nbsp;is<br>
+out&nbsp;of&nbsp;sync,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>MySQLError</strong> = &lt;class _mysql_exceptions.MySQLError&gt;</dt><dd><tt>Exception&nbsp;related&nbsp;to&nbsp;operation&nbsp;with&nbsp;MySQL.</tt></dd></dl>
+
+<dl><dt><strong>NotSupportedError</strong> = &lt;class _mysql_exceptions.NotSupportedError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;in&nbsp;case&nbsp;a&nbsp;method&nbsp;or&nbsp;database&nbsp;API&nbsp;was&nbsp;used<br>
+which&nbsp;is&nbsp;not&nbsp;supported&nbsp;by&nbsp;the&nbsp;database,&nbsp;e.g.&nbsp;requesting&nbsp;a<br>
+.rollback()&nbsp;on&nbsp;a&nbsp;connection&nbsp;that&nbsp;does&nbsp;not&nbsp;support&nbsp;transaction&nbsp;or<br>
+has&nbsp;transactions&nbsp;turned&nbsp;off.</tt></dd></dl>
+
+<dl><dt><strong>OperationalError</strong> = &lt;class _mysql_exceptions.OperationalError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;errors&nbsp;that&nbsp;are&nbsp;related&nbsp;to&nbsp;the&nbsp;database's<br>
+operation&nbsp;and&nbsp;not&nbsp;necessarily&nbsp;under&nbsp;the&nbsp;control&nbsp;of&nbsp;the&nbsp;programmer,<br>
+e.g.&nbsp;an&nbsp;unexpected&nbsp;disconnect&nbsp;occurs,&nbsp;the&nbsp;data&nbsp;source&nbsp;name&nbsp;is&nbsp;not<br>
+found,&nbsp;a&nbsp;transaction&nbsp;could&nbsp;not&nbsp;be&nbsp;processed,&nbsp;a&nbsp;memory&nbsp;allocation<br>
+error&nbsp;occurred&nbsp;during&nbsp;processing,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>ProgrammingError</strong> = &lt;class _mysql_exceptions.ProgrammingError&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;programming&nbsp;errors,&nbsp;e.g.&nbsp;table&nbsp;not&nbsp;found<br>
+or&nbsp;already&nbsp;exists,&nbsp;syntax&nbsp;error&nbsp;in&nbsp;the&nbsp;SQL&nbsp;statement,&nbsp;wrong&nbsp;number<br>
+of&nbsp;parameters&nbsp;specified,&nbsp;etc.</tt></dd></dl>
+
+<dl><dt><strong>Warning</strong> = &lt;class _mysql_exceptions.Warning&gt;</dt><dd><tt>Exception&nbsp;raised&nbsp;for&nbsp;important&nbsp;warnings&nbsp;like&nbsp;data&nbsp;truncations<br>
+while&nbsp;inserting,&nbsp;etc.</tt></dd></dl>
+
+</td></tr></tbody></table></p></td></tr></tbody></table></p><p>
+<table summary="section" border="0" cellpadding="2" cellspacing="0" width="100%">
+<tbody><tr bgcolor="#55aa55">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>insert_values</strong> = &lt;_sre.SRE_Pattern object&gt;</td></tr></tbody></table>
+</p></body></html>
